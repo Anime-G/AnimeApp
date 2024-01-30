@@ -85,7 +85,7 @@ const Nav = () => {
       }
       const [current, setCurrent] = useState('Home');
       const onClick = (e) => {
-        console.log('click ', e);
+        // console.log('click ', e);
         setCurrent(e.key);
       };
       return (<>

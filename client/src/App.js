@@ -27,7 +27,7 @@ function App() {
   }
   useEffect(()=>{
     check_user()
-  },[user])
+  })
   return (
     <AuthContext.Provider value={{user,setUser}} >
 

@@ -1,0 +1,1 @@
+export const trimString=(str)=>str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
