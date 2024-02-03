@@ -1,13 +1,16 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Table, message } from "antd";
 import React, { useEffect, useState } from "react";
-import { AddAuthor, FetchAuthor } from "../../Redux/Author/Action";
-import { connect, useDispatch, useSelector } from "react-redux";
+
+import {  useDispatch, useSelector } from "react-redux";
 import { trimString } from "../../Trimmer";
+import { AddAuthor, add } from "../../Redux/Author/slice";
+import { ApiBase } from "../../Const";
+import axios from "axios";
 
 const Author = () => {
   const Authors = useSelector((state) => state.Author.Data)
-  const data = useSelector((state) => state.Author.data)
+  const data = useSelector((state) => state.Author)
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
@@ -15,16 +18,24 @@ const Author = () => {
     // console.log(values);
     let { name } = values;
     name = trimString(name.toLowerCase());
-    AddAuthor({ name });
-    
-    console.log(data);
+    const res=await axios.post(ApiBase+'/Authors/add',{name});
+    console.log("Name ",name);
+    dispatch(add(res));
+    if(data?.msg)
+    {
+      message.success(data.msg);
+    }
+    else{
+      message.error(data.err);
+    }
     setVisible(false);
+    form.resetFields();
   };
   
 
   
   useEffect(() => {
-    dispatch(FetchAuthor());
+    // dispatch(FetchAuthor());
   },[dispatch]);
   
   const columns = [
@@ -119,7 +130,7 @@ const Author = () => {
       </h1>
       {modal}
       {/* {console.log(Authors)} */}
-      <Table dataSource={Authors} columns={columns} />;
+      <Table dataSource={Authors} columns={columns} />  
     </React.Fragment>
   );
 };

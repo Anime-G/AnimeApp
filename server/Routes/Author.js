@@ -15,7 +15,7 @@ router.post("/add", async (req, res) => {
   if (count===0) {
     const result = await Author.create({ name });
     if (result) {
-      res.json({ msg: "Author Added!" });
+      res.status(201).json({status:201, msg: "Author Added!" });
     } else {
       res.json({ err: "Author is Not Added!" });
     }

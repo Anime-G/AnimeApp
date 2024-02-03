@@ -1,4 +1,4 @@
-import { Button, Card, Form, Input, Space, message } from "antd";
+import { Button, Form, Input,  message } from "antd";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -18,6 +18,7 @@ const [formdata]=Form.useForm();
     width: "50%",
     background: "url('" + bg[form] + "') top/cover ",
     borderRadius: "10px 0px 0px 10px",
+    transition: "all 0.5s ease-in-out",
   };
 
   const loginform = (
@@ -184,7 +185,7 @@ const [formdata]=Form.useForm();
         <div style={{ width: "100%", display: "flex", height: "450px" }}>
           <div style={bg_style}></div>
           <div style={{ width: "50%", padding: "20px", position: "relative" }}>
-            <h1>{form == 0 ? "Login" : "Registration"}</h1>
+            <h1>{form === 0 ? "Login" : "Registration"}</h1>
             <hr />
             <Form
             form={formdata}
@@ -202,10 +203,10 @@ const [formdata]=Form.useForm();
               initialValues={{
                 remember: true,
               }}
-              onFinish={form == 0 ? onlogin : onregister}
+              onFinish={form === 0 ? onlogin : onregister}
               autoComplete="off"
             >
-              {form == 0 ? loginform : Registrationform}
+              {form === 0 ? loginform : Registrationform}
             </Form>
             <Button
               style={{
@@ -219,10 +220,10 @@ const [formdata]=Form.useForm();
                 justifyContent: "center",
               }}
               onClick={() => {
-                form == 0 ? setform(1) : setform(0);
+                form === 0 ? setform(1) : setform(0);
               }}
             >
-              {form == 1 ? "Login" : "Register"}
+              {form === 1 ? "Login" : "Register"}
             </Button>
           </div>
         </div>
