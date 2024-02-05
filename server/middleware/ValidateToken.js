@@ -8,6 +8,7 @@ const validateToken = (req, res, next) => {
       const varifytoken = verify(accessToken, "UltraEgo");
       if (varifytoken) {
         req.user = varifytoken;
+
         return next();
       } else {
         return res.json({ err: "Invalid user!" });

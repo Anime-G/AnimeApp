@@ -2,6 +2,7 @@ import { DeleteOutlined, EditOutlined, PlusOutlined, QuestionCircleOutlined } fr
 import { Button, Form, Input, InputNumber, Modal, Popconfirm, Table, message } from "antd";
 import React, { useEffect, useState } from "react";
 
+<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import { trimString } from "../../Trimmer";
 import { fetch } from "../../Redux/Author/Reducer";
@@ -10,6 +11,17 @@ import { ApiBase } from "../../Const";
 
 const Author = () => {
   const Authors = useSelector((state) => state.Author.Data);
+=======
+import {  useDispatch, useSelector } from "react-redux";
+import { trimString } from "../../Trimmer";
+import { AddAuthor, add } from "../../Redux/Author/slice";
+import { ApiBase } from "../../Const";
+import axios from "axios";
+
+const Author = () => {
+  const Authors = useSelector((state) => state.Author.Data)
+  const data = useSelector((state) => state.Author)
+>>>>>>> e87b15ec978a56396a5ac8ef8424354ba9289c04
   const [form] = Form.useForm();
   const [updateForm] = Form.useForm();
   const [visible, setVisible] = useState(false);
@@ -18,6 +30,7 @@ const Author = () => {
   const onFinish = async (values) => {
     let { name } = values;
     name = trimString(name.toLowerCase());
+<<<<<<< HEAD
     const result = await axios.post(ApiBase + "/Authors/add", { name });
     if (result) {
       if (result.data.err) {
@@ -31,7 +44,20 @@ const Author = () => {
 
     // AddAuthor({ name });
 
+=======
+    const res=await axios.post(ApiBase+'/Authors/add',{name});
+    console.log("Name ",name);
+    dispatch(add(res));
+    if(data?.msg)
+    {
+      message.success(data.msg);
+    }
+    else{
+      message.error(data.err);
+    }
+>>>>>>> e87b15ec978a56396a5ac8ef8424354ba9289c04
     setVisible(false);
+    form.resetFields();
   };
   const onFinishup = async (values) => {
     let { id, name } = values;
@@ -72,9 +98,15 @@ const Author = () => {
     fetchdata();
   }
   useEffect(() => {
+<<<<<<< HEAD
     fetchdata();
   }, [dispatch]);
 
+=======
+    // dispatch(FetchAuthor());
+  },[dispatch]);
+  
+>>>>>>> e87b15ec978a56396a5ac8ef8424354ba9289c04
   const columns = [
     {
       title: "index",
@@ -287,8 +319,13 @@ const Author = () => {
         </Button>
       </h1>
       {modal}
+<<<<<<< HEAD
       {UpModal}
       <Table dataSource={Authors} width="70%" columns={columns} />
+=======
+      {/* {console.log(Authors)} */}
+      <Table dataSource={Authors} columns={columns} />  
+>>>>>>> e87b15ec978a56396a5ac8ef8424354ba9289c04
     </React.Fragment>
   );
 };

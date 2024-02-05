@@ -17,6 +17,7 @@ const Nav = () => {
       localStorage.removeItem("accessToken");
 
     }
+    // console.log(user);
     const items = [
         {
           label: (<Link to="/" >Home</Link>),
@@ -34,7 +35,7 @@ const Nav = () => {
         })  
       }
       else{
-        if(user.status==1)
+        if(user.status===1)
         {
           items.push({
             label: (<Link to="/admin/generaldata" >general Data</Link>),
