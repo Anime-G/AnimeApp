@@ -8,22 +8,20 @@ import  {  createSlice} from '@reduxjs/toolkit'
 
 const initialValues = {Data:[],data:{}};
 
-const authorSlice=createSlice({
-  name:'Author',
+const genereSlice=createSlice({
+  name:'Genere',
   initialState:initialValues,
   reducers:{
     
     fetch:(state,action)=>{
+      
       state.Data=action.payload;
     },
     default:(state)=>{
       state.Data=[]
     }
   },
-  
-  
-  
 })
 
-export const {fetch}=authorSlice.actions;
-export default authorSlice.reducer;
+export const {fetch}=genereSlice.actions;
+export default genereSlice.reducer;

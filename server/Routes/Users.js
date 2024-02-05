@@ -10,7 +10,6 @@ const { validateToken } = require('../middleware/ValidateToken');
 //emailid validation
 router.post("/find_emailid",async(req,res)=>{
     const count=await Users.count({where:{emailid:req.body.emailid}});
-    console.log(count);
     res.json(count);
 })
 //get
@@ -18,7 +17,6 @@ router.post("/find_emailid",async(req,res)=>{
 //post
 router.post("/register",async(req,res)=>{
     let {emailid,name,password}=req.body;
-    console.log(emailid,name,password);
     const pwd=await bcrypt.hash(password,10);
     emailid=emailid.toLowerCase();
     name=name.toLowerCase();
@@ -28,20 +26,16 @@ router.post("/register",async(req,res)=>{
 //login
 router.post("/login",async(req,res)=>{
     let {emailid,password}=req.body;
-    console.log(emailid,password);
     const user=await Users.findOne({where:{emailid}});
     if(user)
     {
-        console.log(user.password);
         const pwd=await bcrypt.compare(password,user.password);
-        console.log(pwd);
         if(pwd)
         {
             const user=await Users.findOne({where:{emailid},attributes:{exclude : ['password'] }});
-            console.log(user);
             const {id,name,status}=user;
             const token=sign({id,name,emailid,status},"UltraEgo");
-            res.json({msg:"user Logged in",token})
+            res.json({msg:"user Logged in",token,id,name,status})
         }
         else{
 

@@ -1,11 +1,14 @@
 import { Tabs } from 'antd';
 import React from 'react'
 import Author from './Author';
+import Studio from './Studio';
+import Type from './Type';
+import Rate from './Rate';
+import Genere from './Genere';
 
 
 const Generaldata = () => {
   const onChange = (key) => {
-    // console.log(key);
  
   };
   const items = [
@@ -17,25 +20,25 @@ const Generaldata = () => {
     {
       key: 'Studio',
       label: 'Studio',
-      children: 'Studio tab Data',
+      children: <Studio/>,
     },
 
     {
       key: 'Type',
       label: 'Type',
-      children: 'Type tab Data',
+      children: <Type/>,
     },
 
     {
       key: 'Rate',
       label: 'Rate',
-      children: 'Rate tab Data',
+      children: <Rate/>,
     },
 
     {
       key: 'Geners',
       label: 'Geners',
-      children: 'Geners tab Data',
+      children: <Genere/>,
     },
   ]
   return (

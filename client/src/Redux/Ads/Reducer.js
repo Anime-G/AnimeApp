@@ -8,8 +8,8 @@ import  {  createSlice} from '@reduxjs/toolkit'
 
 const initialValues = {Data:[],data:{}};
 
-const authorSlice=createSlice({
-  name:'Author',
+const adsSlice=createSlice({
+  name:'Ads',
   initialState:initialValues,
   reducers:{
     
@@ -25,5 +25,5 @@ const authorSlice=createSlice({
   
 })
 
-export const {fetch}=authorSlice.actions;
-export default authorSlice.reducer;
+export const {fetch}=adsSlice.actions;
+export default adsSlice.reducer;

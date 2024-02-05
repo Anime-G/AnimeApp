@@ -23,11 +23,10 @@ function App() {
         id,name,emailid,status
       })
     }
-    
   }
   useEffect(()=>{
     check_user()
-  })
+  },[])
   return (
     <AuthContext.Provider value={{user,setUser}} >
 

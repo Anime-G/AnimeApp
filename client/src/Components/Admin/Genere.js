@@ -4,21 +4,22 @@ import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { trimString } from "../../Trimmer";
-import { fetch } from "../../Redux/Author/Reducer";
+
 import axios from "axios";
 import { ApiBase } from "../../Const";
+import { fetch } from "../../Redux/Genere/Reducer";
 
-const Author = () => {
-  const Authors = useSelector((state) => state.Author.Data);
+const Genere = () => {
+  const Generes = useSelector((state) => state.Genere.Data);
   const [form] = Form.useForm();
   const [updateForm] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const [visibleup, setVisibleup] = useState(false);
   const dispatch = useDispatch();
   const onFinish = async (values) => {
-    let { name } = values;
-    name = trimString(name.toLowerCase());
-    const result = await axios.post(ApiBase + "/Authors/add", { name });
+    let { title } = values;
+    title = trimString(title.toLowerCase());
+    const result = await axios.post(ApiBase + "/Generes/add", { title });
     if (result) {
       if (result.data.err) {
         message.error(result.data.err);
@@ -29,15 +30,15 @@ const Author = () => {
     fetchdata();
     form.resetFields();
 
-    // AddAuthor({ name });
+    // AddAuthor({ title });
 
     setVisible(false);
   };
   const onFinishup = async (values) => {
-    let { id, name } = values;
-    name = trimString(name.toLowerCase());
-    name = trimString(name);
-    const result = await axios.patch(ApiBase + "/Authors/update", { name, id });
+    let { id, title } = values;
+    title = trimString(title.toLowerCase());
+    title = trimString(title);
+    const result = await axios.patch(ApiBase + "/Generes/update", { title, id });
     if (result) {
       if (result.data.err) {
         message.error(result.data.err);
@@ -47,21 +48,21 @@ const Author = () => {
     }
     fetchdata();
     updateForm.resetFields();
-    setVisibleup(false);
+    setVisibleup(false);    
   };
   const fetchselectedAuthor = async (id) => {
-    const result = await axios.get(ApiBase + "/Authors/find/" + id);
+    const result = await axios.get(ApiBase + "/Generes/find/" + id);
     const data = result.data;
-    updateForm.setFieldsValue({ name: data.name.toUpperCase(), id: data.id });
+    updateForm.setFieldsValue({ title: data.title.toUpperCase(), id: data.id });
   };
   const fetchdata = async () => {
-    const data = await axios.get(ApiBase + "/Authors/");
+    const data = await axios.get(ApiBase + "/Generes/");
     const d = data.data;
     dispatch(fetch(d));
-    // setauth(Authors);
+    // setauth(Generes);
   };
   const deleteauthor=async(id)=>{
-    const result = await axios.delete(ApiBase + "/Authors/delete/"+id);
+    const result = await axios.delete(ApiBase + "/Generes/delete/"+id);
     if (result) {
       if (result.data.err) {
         message.error(result.data.err);
@@ -85,9 +86,9 @@ const Author = () => {
     },
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text, record, index) =>record.name.toUpperCase()
+      dataIndex: "title",
+      key: "title",
+      render: (text, record, index) =>record.title.toUpperCase()
     },
     {
       title: "update",
@@ -114,7 +115,7 @@ const Author = () => {
       render: (text, record, index) => (
         <Popconfirm
           title="Delete the task"
-          description={"Are you sure to delete this "+record.name.toUpperCase()+"?"}
+          description={"Are you sure to delete this "+record.title.toUpperCase()+"?"}
           onConfirm={()=>deleteauthor(record.id)}
           icon={
             <QuestionCircleOutlined
@@ -134,7 +135,7 @@ const Author = () => {
   const modalForm = (
     <Form
       form={form}
-      name="add Author"
+      name="add Genere"
       labelCol={{
         span: 8,
       }}
@@ -150,12 +151,12 @@ const Author = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Author name"
-        name="name"
+        label="Genere title"
+        name="title"
         rules={[
           {
             required: true,
-            message: "Please input Author name!",
+            message: "Please input Genere title!",
           },
         ]}
       >
@@ -166,7 +167,7 @@ const Author = () => {
   const modalUpForm = (
     <Form
       form={updateForm}
-      name="Update Author"
+      name="Update Genere"
       labelCol={{
         span: 8,
       }}
@@ -182,25 +183,25 @@ const Author = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Author id"
+        label="Genere id"
         name="id"
         hidden
         rules={[
           {
             required: true,
-            message: "Please input Author id!",
+            message: "Please input Genere id!",
           },
         ]}
       >
         <InputNumber />
       </Form.Item>
       <Form.Item
-        label="Author name"
-        name="name"
+        label="Genere title"
+        name="title"
         rules={[
           {
             required: true,
-            message: "Please input Author name!",
+            message: "Please input Genere title!",
           },
         ]}
       >
@@ -211,7 +212,7 @@ const Author = () => {
   const modal = (
     <Modal
       open={visible}
-      title="add Author"
+      title="add Genere"
       okText="Submit"
       cancelText="Cancel"
       onCancel={() => {
@@ -244,7 +245,7 @@ const Author = () => {
   const UpModal = (
     <Modal
       open={visibleup}
-      title="Update Author"
+      title="Update Genere"
       okText="Submit"
       cancelText="Cancel"
       onCancel={() => {
@@ -276,7 +277,7 @@ const Author = () => {
   );
 
   return (
-    <React.Fragment key={Authors}>
+    <React.Fragment key={Generes}>
       <h1 align="right">
         <Button
           onClick={() => {
@@ -288,9 +289,9 @@ const Author = () => {
       </h1>
       {modal}
       {UpModal}
-      <Table dataSource={Authors} width="70%" columns={columns} />
+      <Table dataSource={Generes} width="70%" columns={columns} />
     </React.Fragment>
   );
 };
 
-export default Author;
+export default Genere;

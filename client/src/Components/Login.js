@@ -1,10 +1,12 @@
 import { Button, Card, Form, Input, Space, message } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 
 import { ApiBase } from "../Const";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Helper/AuthContext";
 const Login = () => {
+  const {setUser}=useContext(AuthContext);
   const [form, setform] = useState(0);
   const navigate = useNavigate();
 const [formdata]=Form.useForm();
@@ -18,6 +20,7 @@ const [formdata]=Form.useForm();
     width: "50%",
     background: "url('" + bg[form] + "') top/cover ",
     borderRadius: "10px 0px 0px 10px",
+    transition:"all .3s linear",
   };
 
   const loginform = (
@@ -126,12 +129,14 @@ const [formdata]=Form.useForm();
     </React.Fragment>
   );
   const onlogin =async (values) => {
-    console.log("form submitted: ", values);
     const result = await axios.post(ApiBase + "/users/login", values);
     if(!result.data.err)
     {
+        const {id,name,emailid,status,token}=result.data;
         message.success(result.data.msg);
-        localStorage.setItem("accessToken",result.data.token);
+        localStorage.setItem("accessToken",token);
+
+        setUser({id,name,emailid,status})
         formdata.resetFields();
         navigate('/');
     }
@@ -141,14 +146,12 @@ const [formdata]=Form.useForm();
   };
 
   const onregister = async (values) => {
-    console.log("form submitted: ", values);
     const { emailid, password, confpassword } = values;
 
     //emailid reapting or not?
     const count = await axios.post(ApiBase + "/users/find_emailid", {
       emailid,
     });
-    console.log(count);
     if (count.data > 0) {
       message.error("Email id is Already registered!");
     } else {
@@ -165,7 +168,6 @@ const [formdata]=Form.useForm();
       } else {
         message.error("User not Register!");
       }
-      console.log(result);
     }
   };
   return (
