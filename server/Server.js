@@ -11,6 +11,7 @@ const Studio=require('./Routes/Studio');
 const Type=require('./Routes/Type');
 const Rate=require('./Routes/Rate');
 const Genere=require('./Routes/Genere');
+const Ads=require('./Routes/Ads');
 
 app.use('/users',users)
 app.use('/Authors',Author)
@@ -18,6 +19,7 @@ app.use('/Studios',Studio)
 app.use('/Types',Type)
 app.use('/Rates',Rate)
 app.use('/Generes',Genere)
+app.use('/Ads',Ads)
 db.sequelize.sync().then(()=>{
     app.listen(port,()=>{
         console.log("Port: ",port);

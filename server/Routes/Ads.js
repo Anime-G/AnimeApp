@@ -13,10 +13,11 @@ router.get('/find/:id',async(req,res)=>{
 })
 
 router.post("/add", async (req, res) => {
-  const { title } = req.body;
+  const { title,pic,Description } = req.body;
+  console.log({ title,pic,Description });
   const count = await Adds.count({where:{ title }});
   if (count===0) {
-    const result = await Adds.create({ title });
+    const result = await Adds.create({ title,pic,Description });
     if (result) {
       res.json({ msg: "Ad Added!" });
     } else {

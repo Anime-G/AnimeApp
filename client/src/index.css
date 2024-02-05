@@ -13,3 +13,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.custom-action-tab {
+  background-color: transparent !important; /* Set the color of the action tab button */
+}
