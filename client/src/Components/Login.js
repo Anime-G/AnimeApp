@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import { Button, Card, Form, Input, Space, message } from "antd";
-import React, { useContext, useState } from "react";
-=======
+
 import { Button, Form, Input,  message } from "antd";
 import React, { useState } from "react";
->>>>>>> e87b15ec978a56396a5ac8ef8424354ba9289c04
+
 import axios from "axios";
 
 import { ApiBase } from "../Const";
@@ -25,11 +22,10 @@ const [formdata]=Form.useForm();
     width: "50%",
     background: "url('" + bg[form] + "') top/cover ",
     borderRadius: "10px 0px 0px 10px",
-<<<<<<< HEAD
-    transition:"all .3s linear",
-=======
-    transition: "all 0.5s ease-in-out",
->>>>>>> e87b15ec978a56396a5ac8ef8424354ba9289c04
+
+
+    transition: "all 0.3s ease-in-out",
+
   };
 
   const loginform = (
