@@ -27,7 +27,7 @@ const Ads = () => {
   const AddModal = (
     <Modal
       title="Add New Item"
-      visible={visible}
+      open={visible}
       onCancel={handleCancel}
       footer={null}
       width={600} 

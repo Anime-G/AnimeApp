@@ -23,11 +23,9 @@ function App() {
   }
   useEffect(()=>{
     check_user()
-<<<<<<< HEAD
+
   },[])
-=======
-  },[user])
->>>>>>> e87b15ec978a56396a5ac8ef8424354ba9289c04
+
   return (
     <AuthContext.Provider value={{user,setUser}} >
     <div className="App">

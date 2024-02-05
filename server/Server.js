@@ -20,5 +20,6 @@ app.use('/Rates',Rate)
 app.use('/Generes',Genere)
 db.sequelize.sync().then(()=>{
     app.listen(port,()=>{
+        console.log("Port: ",port);
     })
 });
