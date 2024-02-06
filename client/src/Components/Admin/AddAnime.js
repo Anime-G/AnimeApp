@@ -8,6 +8,7 @@ import {
   Row,
   Select,
   Space,
+  message,
 } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +20,9 @@ import { fetch as Typefetch } from "../../Redux/Type/Reducer";
 import { fetch as Authfetch } from "../../Redux/Author/Reducer";
 import { fetch as StudioFetch } from "../../Redux/Studio/Reducer";
 import { fetch as GenereFetch } from "../../Redux/Genere/Reducer";
-import { Option } from "antd/es/mentions";
+
+import { trimString } from "../../Trimmer";
+
 
 const AddAnime = () => {
   //name	description	pic	status	RateId	TypeId
@@ -33,12 +36,28 @@ const AddAnime = () => {
   const Studios = useSelector((state) => state.Studio.Data);
   const Generes = useSelector((state) => state.Genere.Data);
   const [pic, setImageUrl] = useState("");
-  const onFinish = (values) => {
+  const [form] =Form.useForm();
+  const onFinish = async(values) => {
     console.log("Success:", values);
+    let {AuthorId,StudioId,GenereId,RateId,TypeId,status,name,pic,description}=values;
+    name=trimString(name).toLowerCase();
+    pic=trimString(pic);
+    description=trimString(description);
+    values={AuthorId,GenereId,StudioId,RateId,TypeId,status,name,pic,description};
+    const result=await axios.post(ApiBase+"/Animes/add",values)
+    if(result)
+    {
+      if (result.data.msg) {
+        message.success(result.data.msg);
+        form.resetFields();
+        setImageUrl("");
+      } else {
+        message.error(result.data.err);
+      }
+    }
+
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  
   const getrate = async () => {
     const data = await axios.get(ApiBase + "/Rates/");
     const d = data.data;
@@ -97,8 +116,9 @@ const AddAnime = () => {
   };
   return (
     <div>
-      <h1>Add Anime Detail</h1>
+      <h3>Add Anime Detail</h3>
       <Form
+        form={form}
         name="Anime Add"
         labelCol={{
           span: 8,
@@ -161,7 +181,10 @@ const AddAnime = () => {
               </Form.Item>
             </Col>
             <Col span="12">
+            <Space.Compact style={{ width: "100%" }}>
+
               <Form.Item
+              style={{ width: "100%" }}
                 label="Rate"
                 name="RateId"
                 rules={[
@@ -171,7 +194,6 @@ const AddAnime = () => {
                   },
                 ]}
               >
-                <Space.Compact style={{ width: "100%" }}>
                   <Select key={Rates}>
                     {Rates.map((rate) => {
                       return (
@@ -181,25 +203,29 @@ const AddAnime = () => {
                       );
                     })}
                   </Select>
+              </Form.Item>
                   <Button title="Refresh" onClick={() => getAuthor()}>
                     <ReloadOutlined />
                   </Button>
                 </Space.Compact>
-              </Form.Item>
             </Col>
-            <Col span="12">
-              <Form.Item
-                label="Type"
-                name="TypeId"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please Select Type!",
-                  },
-                ]}
-              >
-                <Space.Compact style={{ width: "100%" }}>
-                  <Select key={Types}>
+            <Col span="12" >
+
+
+
+              <Space.Compact style={{ width: "100%", margin: "0px auto" }} >
+                <Form.Item
+                  style={{ width: "100%" }}
+                  label="Type"
+                  name="TypeId"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please Select Type!",
+                    }
+                  ]}
+                >
+                  <Select required key={Types}>
                     {Types.map((type) => {
                       return (
                         <Select.Option key={type.id} value={type.id}>
@@ -208,27 +234,30 @@ const AddAnime = () => {
                       );
                     })}
                   </Select>
-                  <Button title="Refresh" onClick={() => gettype()}>
-                    <ReloadOutlined />
-                  </Button>
-                </Space.Compact>
-              </Form.Item>
+                </Form.Item>
+                <Button title="Refresh" onClick={() => gettype()}>
+                  <ReloadOutlined />
+                </Button>
+
+              </Space.Compact>
+
+
             </Col>
             <Col span="12">
-              <Form.Item
-                label="Author"
-                name="AuthorId"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please Select Authors!",
-                  },{
-                    required: false,
-                    
-                  },
-                ]}
-              >
-                <Space.Compact style={{ width: "100%" }}>
+
+              <Space.Compact style={{ width: "100%", margin: "0px auto" }} >
+                <Form.Item
+                  style={{ width: "100%" }}
+                  label="Author"
+                  name="AuthorId"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please Select Authors!",
+                    }
+                  ]}
+                >
+
                   <Select
                     mode="multiple"
                     key={Authors}
@@ -247,25 +276,29 @@ const AddAnime = () => {
                       );
                     })}
                   </Select>
-                  <Button title="Refresh" onClick={() => getAuthor()}>
-                    <ReloadOutlined />
-                  </Button>
-                </Space.Compact>
-              </Form.Item>
+                </Form.Item>
+                <Button title="Refresh" onClick={() => getAuthor()}>
+                  <ReloadOutlined />
+                </Button>
+              </Space.Compact>
+
+
             </Col>
             <Col span="12">
-              <Form.Item
-                label="Studio"
-                name="StudioId"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please Select Studio!",
-                  },
-                ]}
-              >
-                <Space.Compact style={{ width: "100%" }}>
-                
+              <Space.Compact style={{ width: "100%" }}>
+
+                <Form.Item
+                  style={{ width: "100%" }}
+                  label="Studio"
+                  name="StudioId"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please Select Studio!",
+                    },
+                  ]}
+                >
+
                   <Select
                     mode="multiple"
                     key={Studios}
@@ -284,25 +317,27 @@ const AddAnime = () => {
                       );
                     })}
                   </Select>
-               
-                  <Button title="Refresh" onClick={() => getStudio()}>
-                    <ReloadOutlined />
-                  </Button>
-                </Space.Compact>
-              </Form.Item>
+
+                </Form.Item>
+                <Button title="Refresh" onClick={() => getStudio()}>
+                  <ReloadOutlined />
+                </Button>
+              </Space.Compact>
             </Col>
             <Col span="12">
-              <Form.Item
-                label="Generes"
-                name="GenereId"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please Select Genere!",
-                  },
-                ]}
-              >
-                <Space.Compact style={{ width: "100%" }}>
+              <Space.Compact style={{ width: "100%" }}>
+
+                <Form.Item
+                  style={{ width: "100%" }}
+                  label="Generes"
+                  name="GenereId"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please Select Genere!",
+                    },
+                  ]}
+                >
                   <Select
                     mode="multiple"
                     key={Generes}
@@ -321,11 +356,11 @@ const AddAnime = () => {
                       );
                     })}
                   </Select>
-                  <Button title="Refresh" onClick={() => getGenere()}>
-                    <ReloadOutlined />
-                  </Button>
-                </Space.Compact>
-              </Form.Item>
+                </Form.Item>
+                <Button title="Refresh" onClick={() => getGenere()}>
+                  <ReloadOutlined />
+                </Button>
+              </Space.Compact>
             </Col>
             <Col span="12">
               <Form.Item
@@ -373,8 +408,8 @@ const AddAnime = () => {
             </Button>
           </Form.Item>
         </div>
-      </Form>
-    </div>
+      </Form >
+    </div >
   );
 };
 

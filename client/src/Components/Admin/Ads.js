@@ -62,11 +62,11 @@ const Ads = () => {
     console.log(values);
     const result = await axios.post(ApiBase + "/Ads/add", values);
     if (result) {
-      if (result.data.msg) {
-        message.success(result.data.msg);
-      } else {
-        message.error(result.data.err);
-      }
+        if (result.data.msg) {
+          message.success(result.data.msg);
+        } else {
+          message.error(result.data.err);
+        }
     }
 
     fetchdata();
