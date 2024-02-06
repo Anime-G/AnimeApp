@@ -29,10 +29,10 @@ router.post("/add", async (req, res) => {
   }
 });
 router.patch("/update", async (req, res) => {
-  const { title,id } = req.body;
+  const { title,id,Description,pic } = req.body;
   const count = await Adds.count({where:{ id }});
   if (count===1) {
-    const result = await Adds.update({ title },{where: {id}});
+    const result = await Adds.update({ title,Description,pic },{where: {id}});
     if (result) {
       res.json({ msg: "Ad Updated!" });
     } else {

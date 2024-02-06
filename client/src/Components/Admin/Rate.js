@@ -50,7 +50,7 @@ const Rate = () => {
     updateForm.resetFields();
     setVisibleup(false);    
   };
-  const fetchselectedAuthor = async (id) => {
+  const fetchselectedRate = async (id) => {
     const result = await axios.get(ApiBase + "/Rates/find/" + id);
     const data = result.data;
     updateForm.setFieldsValue({ title: data.title.toUpperCase(), id: data.id });
@@ -99,7 +99,7 @@ const Rate = () => {
         <Button
           type="primary"
           onClick={() => {
-            fetchselectedAuthor(record.id);
+            fetchselectedRate(record.id);
             setVisibleup(true);
           }}
         >

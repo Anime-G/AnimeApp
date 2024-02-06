@@ -1,7 +1,24 @@
-import Card from "antd/es/card/Card";
-import React from "react";
 
+import React from "react";
+import { Tabs,Card } from 'antd';
+import { PlusSquareOutlined } from '@ant-design/icons'
+import AddAnime from "./AddAnime";
 const Anime = () => {
+const onChange = (key) => {
+  console.log(key);
+};
+const items = [
+  {
+    key: '1',
+    label: 'Anime Details',
+    children: 'Details',
+  },
+  {
+    key: '2',
+    label: (<><PlusSquareOutlined /> Add</>),
+    children: <AddAnime/>,
+  }
+];
   return (
     <div>
       <h1>Anime</h1>
@@ -13,7 +30,9 @@ const Anime = () => {
           width: "90%",
           margin: "0px auto",
         }}
-      ></div>
+      ><Tabs defaultActiveKey="2" items={items} onChange={onChange} />
+
+      </div>
     </div>
   );
 };

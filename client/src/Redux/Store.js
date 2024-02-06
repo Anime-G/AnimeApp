@@ -5,6 +5,7 @@ import typeSlice from "./Type/Reducer";
 import rateSlice from "./Rate/Reducer";
 import genereSlice from "./Genere/Reducer";
 import adsSlice from "./Ads/Reducer";
+import UserpicSlice from "./userpic/Reducer";
 // import AuthorReducer from "./Author/Reducer";
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     Rate: rateSlice,
     Genere: genereSlice,
     Ads: adsSlice,
+    UserPics: UserpicSlice,
   },
 });
 

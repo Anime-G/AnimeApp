@@ -1,4 +1,9 @@
-import { DeleteOutlined, EditOutlined, PlusOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  PlusOutlined,
+  QuestionCircleOutlined,
+} from "@ant-design/icons";
 import {
   Button,
   Form,
@@ -25,8 +30,10 @@ const Ads = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6; // Number of cards per page
   const [visible, setVisible] = useState(false);
+  const [visibleup, setVisibleup] = useState(false);
   const [addform] = Form.useForm();
-  // const [updateform] = Form.useForm();
+  const [updateform] = Form.useForm();
+
   // Function to handle showing and hiding the modal
   const showModal = () => {
     setVisible(true);
@@ -34,6 +41,14 @@ const Ads = () => {
 
   const handleCancel = () => {
     setVisible(false);
+  };
+
+  const showModalup = () => {
+    setVisibleup(true);
+  };
+
+  const handleCancelup = () => {
+    setVisibleup(false);
   };
 
   // Form submit handler
@@ -53,26 +68,48 @@ const Ads = () => {
         message.error(result.data.err);
       }
     }
-   
+
     fetchdata();
     addform.resetFields();
-    
+
     // Here you can handle form submission logic, such as sending data to a server
     setVisible(false); // Close the modal after form submission
     addform.resetFields();
-    
+  };
+  // Form submit handler
+  const onFinishup = async (values) => {
+    console.log("Received values:", values);
+    let { id, Description, title, pic } = values;
+    Description = trimString(Description);
+    pic = trimString(pic);
+    title = trimString(title).toLowerCase();
+    values = { id,Description, title, pic };
+    console.log(values);
+    const result = await axios.patch(ApiBase + "/Ads/update", values);
+    if (result) {
+      if (result.data.msg) {
+        message.success(result.data.msg);
+      } else {
+        message.error(result.data.err);
+      }
+    }
+
+    fetchdata();
+    updateform.resetFields();
+
+    // Here you can handle form submission logic, such as sending data to a server
+    setVisibleup(false); // Close the modal after form submission
+    updateform.resetFields();
   };
   const AddModal = (
     <Modal
-      
-      title="Add New Item"
+      title="Add New ad"
       open={visible}
       onCancel={handleCancel}
       footer={null}
       width={600}
     >
       <Form
-
         form={addform}
         name="basic"
         initialValues={{ remember: true }}
@@ -83,14 +120,6 @@ const Ads = () => {
           label="Title"
           name="title"
           rules={[{ required: true, message: "Please input the title!" }]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="Picture"
-          name="pic"
-          rules={[{ required: true, message: "Please input the picture URL!" }]}
         >
           <Input />
         </Form.Item>
@@ -108,7 +137,13 @@ const Ads = () => {
         >
           <Input.TextArea max={500} />
         </Form.Item>
-
+        <Form.Item
+          label="Picture"
+          name="pic"
+          rules={[{ required: true, message: "Please input the picture URL!" }]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Submit
@@ -117,6 +152,72 @@ const Ads = () => {
       </Form>
     </Modal>
   );
+  const UpModal = (
+    <Modal
+      title="Update Ad"
+      open={visibleup}
+      onCancel={handleCancelup}
+      footer={null}
+      width={600}
+    >
+      <Form
+        form={updateform}
+        name="basic"
+        initialValues={{ remember: true }}
+        onFinish={onFinishup}
+        layout="vertical"
+      >
+        <Form.Item
+          label="id"
+          name="id"
+          hidden
+          rules={[{ required: true, message: "Please input the title!" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[{ required: true, message: "Please input the title!" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Description"
+          name="Description"
+          rules={[
+            {
+              required: true,
+              max: 500,
+              message: "Please input the description!",
+            },
+          ]}
+        >
+          <Input.TextArea max={500} />
+        </Form.Item>
+        <Form.Item
+          label="Picture"
+          name="pic"
+          rules={[{ required: true, message: "Please input the picture URL!" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
+  const finddata = (id) => {
+    const result = data.filter((item) => item.id === id);
+    console.log(result);
+    const {title,Description,pic}=result[0];
+    console.log({title,Description,pic});
+    updateform.setFieldsValue({id,title,Description,pic});
+    showModalup();
+  };
   // Calculate the start and end index of cards for the current page
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = currentPage * pageSize;
@@ -134,7 +235,6 @@ const Ads = () => {
         }}
         cover={<Image alt="example" src={item.pic} height={180} />}
         hoverable
-       
       >
         <Tooltip
           placement="bottom"
@@ -157,6 +257,7 @@ const Ads = () => {
           />
         </Tooltip>
         <Button
+          onClick={() => finddata(item.id)}
           style={{
             position: "absolute",
             bottom: 0,
@@ -173,7 +274,7 @@ const Ads = () => {
         <Popconfirm
           title="Delete the Ad"
           description="Are you sure to delete this Ad?"
-          onConfirm={()=>deleteAd(item.id)}
+          onConfirm={() => deleteAd(item.id)}
           icon={
             <QuestionCircleOutlined
               style={{
@@ -181,7 +282,6 @@ const Ads = () => {
               }}
             />
           }
-          
         >
           <Button
             style={{
@@ -224,15 +324,14 @@ const Ads = () => {
   }, []);
   return (
     <div>
-      <h1>Ads {data.length>0?"[ "+ data.length+" ]":"" } </h1>
+      <h1>Ads {data.length > 0 ? "[ " + data.length + " ]" : ""} </h1>
       <div
         style={{
           background: "rgba(225,225,225,.6)",
           borderRadius: "10px",
           padding: 20,
           width: "90%",
-          margin: "0px auto",
-          
+          margin: "20px auto",
         }}
       >
         <h1 align="right">
@@ -259,9 +358,9 @@ const Ads = () => {
         >
           {renderCards()}
         </div>
-        
       </div>
       {AddModal}
+      {UpModal}
     </div>
   );
 };

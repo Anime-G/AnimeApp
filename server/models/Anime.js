@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Anime = sequelize.define("Anime", {
     title: { type: DataTypes.STRING, allownull: false },
-    description: { type: DataTypes.STRING, allownull: false, unique: true },
-    pic: { type: DataTypes.STRING, allownull: false },
+    description: { type: DataTypes.STRING(1000), allownull: false, unique: true },
+    pic: { type: DataTypes.STRING(500), allownull: false },
     status: { type: DataTypes.INTEGER, defaultValue: 0, allownull: false },
   });
   // Rated G: General audiences – All ages admitted.
