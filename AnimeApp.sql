@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 06, 2024 at 01:22 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Feb 06, 2024 at 06:53 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `AnimeApp`
+-- Database: `animeapp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Adds`
+-- Table structure for table `adds`
 --
 
-CREATE TABLE `Adds` (
+CREATE TABLE `adds` (
   `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `pic` varchar(255) DEFAULT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `Adds` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Adds`
+-- Dumping data for table `adds`
 --
 
-INSERT INTO `Adds` (`id`, `title`, `pic`, `Description`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `adds` (`id`, `title`, `pic`, `Description`, `createdAt`, `updatedAt`) VALUES
 (1, 'tokyo ghoul', 'https://i.pinimg.com/originals/33/b2/22/33b2225ce2b03ac98c8a5fa1af01d6cc.gif', 'Ken Kaneki transforms into a half-ghoul, straddling two worlds of humans and flesh-eating ghouls. Amidst moral dilemmas and societal rejection, he seeks acceptance while navigating a perilous existence. As conflicts between ghouls and humans intensify, Kaneki confronts his inner demons and battles for survival in a dark and unforgiving world.', '2024-02-05 10:26:53', '2024-02-06 06:38:05'),
 (2, 'naruto shippuden', 'https://i.pinimg.com/originals/1a/5b/85/1a5b85c80a03fc4ba6b0847a6553e283.gif', 'Naruto Shippuden follows Naruto Uzumaki\'s journey as he returns to the Hidden Leaf Village after training for two years. Faced with the looming threat of the Akatsuki organization, Naruto seeks to retrieve his friend Sasuke, who has turned to darkness. Alongside his allies, Naruto confronts powerful enemies, delves into his past, and strives to protect his village while wrestling with the complexities of friendship, loss, and the pursuit of peace.', '2024-02-05 10:35:34', '2024-02-06 06:35:41'),
 (3, 'dragon ball', 'https://i.pinimg.com/originals/d2/b7/09/d2b7095eb27bcd3efaf159be8cf43456.gif', 'Dragon Ball follows the adventures of Goku, a pure-hearted and adventurous boy with a monkey tail, as he embarks on a quest to find the mystical Dragon Balls. Along the way, he encounters allies like Bulma, Krillin, and Master Roshi, and faces off against villains such as Emperor Pilaf and the Red Ribbon Army. Through martial arts tournaments and epic battles, Goku\'s journey unfolds, marked by friendship, discovery, and the pursuit of strength and justice.', '2024-02-05 11:51:19', '2024-02-06 06:27:08'),
@@ -54,10 +54,10 @@ INSERT INTO `Adds` (`id`, `title`, `pic`, `Description`, `createdAt`, `updatedAt
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Animes`
+-- Table structure for table `animes`
 --
 
-CREATE TABLE `Animes` (
+CREATE TABLE `animes` (
   `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` varchar(1000) DEFAULT NULL,
@@ -69,13 +69,26 @@ CREATE TABLE `Animes` (
   `TypeId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `animes`
+--
+
+INSERT INTO `animes` (`id`, `title`, `description`, `pic`, `status`, `createdAt`, `updatedAt`, `RateId`, `TypeId`) VALUES
+(3, 'one piece', '\"One Piece\" is an epic manga series by Eiichiro Oda, chronicling the adventures of Monkey D. Luffy and his crew as they search for the legendary treasure, One Piece, to become the Pirate King. Filled with vibrant characters, intense battles, and intricate storytelling, the series takes readers on a journey through a vast world of oceans and islands. Luffy, armed with his rubber-like abilities, leads the Straw Hat Pirates on a quest filled with friendship, determination, and the pursuit of dreams, captivating audiences globally for over two decades.', 'https://i.pinimg.com/736x/10/8e/3b/108e3b1df00743bb3ce908a48c8e7e47.jpg', 0, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 1),
+(4, 'dragon ball', '\"Dragon Ball\" is a classic Japanese manga and anime series created by Akira Toriyama. It follows the adventures of Goku, a young and adventurous boy with incredible martial arts skills and a monkey tail, as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, Goku encounters a diverse cast of characters, including the powerful Saiyan prince Vegeta, the wise martial arts master Master Roshi, and the loyal friends he makes during his travels. Filled with thrilling battles, humorous moments, and epic quests, \"Dragon Ball\" has become a beloved franchise worldwide, inspiring numerous spin-offs, movies, and video games.', 'https://i.pinimg.com/564x/04/1e/39/041e39121d129beb6a3423688e8eb03e.jpg', 1, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 3, 1),
+(5, 'naruto', '\"Naruto\" is a Japanese manga and anime series created by Masashi Kishimoto. It tells the story of Naruto Uzumaki, a young ninja with dreams of becoming the strongest ninja and the leader of his village, known as the Hokage. Born with a powerful fox spirit sealed within him, Naruto faces prejudice and loneliness but strives to prove himself to his peers and earn their respect. Alongside his friends and fellow ninjas, including Sasuke Uchiha and Sakura Haruno, Naruto embarks on various missions and battles against powerful foes while uncovering the truth about his past and the world around him. With its themes of friendship, perseverance, and redemption, \"Naruto\" has captured the hearts of fans worldwide and has become one of the most popular anime and manga franchises of all time.', 'https://i.pinimg.com/564x/d7/be/b3/d7beb32a2ac6f8c8df1b7adbe6a1da75.jpg', 1, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 3, 1),
+(6, 'naruto shippuden', '\"Naruto Shippuden\" is the continuation of the original \"Naruto\" series, created by Masashi Kishimoto. Set several years after the events of the original series, it follows Naruto Uzumaki and his friends as they embark on a new set of adventures and face even greater challenges. With Sasuke Uchiha\'s defection to the villainous organization Akatsuki, Naruto\'s quest to bring him back becomes central to the story. Alongside his comrades, Naruto trains diligently to become stronger and protect his village from looming threats, including the malevolent figure known as Pain. \"Naruto Shippuden\" delves deeper into the characters\' backstories, relationships, and the complexities of the ninja world, offering a more mature and nuanced narrative while retaining the series\' trademark action and humor.', 'https://i.pinimg.com/564x/5d/5e/eb/5d5eeb960c8553db6fccaa30685b6f12.jpg', 1, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 3, 1),
+(7, 'bleach', '\"Bleach\" is a Japanese manga and anime series created by Tite Kubo. It follows the story of Ichigo Kurosaki, a teenager with the ability to see ghosts. After inadvertently obtaining the powers of a Soul Reaper—a spiritual being tasked with guiding souls to the afterlife—Ichigo finds himself thrust into the world of the Soul Society, where he must battle evil spirits known as Hollows and protect both the living and the dead. Alongside his friends, including the fiery-tempered Soul Reaper Rukia Kuchiki and the quirky spirit medium Orihime Inoue, Ichigo faces increasingly powerful foes and uncovers dark conspiracies that threaten the balance between the human world and the afterlife. With its blend of action-packed battles, supernatural elements, and intricate world-building, \"Bleach\" has garnered a dedicated fanbase worldwide.', 'https://i.pinimg.com/564x/73/3d/1b/733d1bdb2a589da8563016253232b586.jpg', 1, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 3, 1),
+(8, 'bleach: thousand-year blood war', '\"Bleach: Thousand-Year Blood War\" is an arc within the \"Bleach\" manga series, created by Tite Kubo. This arc follows the climactic battle between the Soul Society and the Wandenreich, a powerful organization of Quincy led by Yhwach. As Yhwach and his forces launch a full-scale invasion of the Soul Society, Ichigo Kurosaki and his allies must rally together to defend their world against this formidable threat. The arc delves into the history of the Quincy, Ichigo\'s own lineage, and the true nature of the Soul King, culminating in epic battles and shocking revelations that reshape the fate of the Bleach universe. With its intense action, complex characters, and high-stakes storytelling, the Thousand-Year Blood War arc is a thrilling conclusion to the Bleach manga series.', 'https://i.pinimg.com/564x/c4/d8/56/c4d85662d571d18c31437e2fe0b2c9ea.jpg', 1, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 3, 1),
+(9, 'god of high school', '\"God of High School\" is a South Korean webtoon series created by Yongje Park, which has also been adapted into a popular anime. The story centers around Jin Mori, a high school student and skilled martial artist who enters the God of High School tournament, a competition where participants from all over the country battle it out using their martial arts skills. As the tournament progresses, Jin Mori encounters formidable opponents, forges new friendships, and uncovers the mysteries surrounding the tournament\'s true purpose. Alongside his friends, including the swordswoman Yu Mira and the hand-to-hand fighter Han Daewi, Jin Mori faces increasingly powerful adversaries and confronts his own past. With its dynamic fight scenes, supernatural elements, and themes of friendship and self-discovery, \"God of High School\" has captivated audiences with its fast-paced action and compelling characters.m', 'https://i.pinimg.com/564x/dc/a5/94/dca59487be9687615d1a3e0fd78105b6.jpg', 1, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 3, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `AuthorAnimes`
+-- Table structure for table `authoranimes`
 --
 
-CREATE TABLE `AuthorAnimes` (
+CREATE TABLE `authoranimes` (
   `id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
@@ -83,13 +96,26 @@ CREATE TABLE `AuthorAnimes` (
   `AuthorId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `authoranimes`
+--
+
+INSERT INTO `authoranimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `AuthorId`) VALUES
+(3, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 36),
+(4, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 6),
+(5, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 7),
+(6, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 7),
+(7, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 8),
+(8, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 8),
+(9, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 38);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Authors`
+-- Table structure for table `authors`
 --
 
-CREATE TABLE `Authors` (
+CREATE TABLE `authors` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
@@ -97,24 +123,25 @@ CREATE TABLE `Authors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Authors`
+-- Dumping data for table `authors`
 --
 
-INSERT INTO `Authors` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `authors` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (6, 'akira toriyama', '2024-01-30 06:20:03', '2024-01-30 06:20:03'),
 (7, 'masashi kishimoto', '2024-01-30 06:22:27', '2024-01-30 06:22:27'),
 (8, 'tite kubo', '2024-01-30 06:23:04', '2024-01-30 06:23:04'),
 (9, 'tsugumi ohba', '2024-01-30 06:24:42', '2024-01-30 06:24:42'),
 (36, 'eiichiro oda', '2024-02-06 11:41:48', '2024-02-06 11:41:48'),
-(37, 'yuzuru tachikawa', '2024-02-06 11:47:22', '2024-02-06 11:47:22');
+(37, 'yuzuru tachikawa', '2024-02-06 11:47:22', '2024-02-06 11:47:22'),
+(38, 'yongje park', '2024-02-06 17:51:15', '2024-02-06 17:51:15');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Episodes`
+-- Table structure for table `episodes`
 --
 
-CREATE TABLE `Episodes` (
+CREATE TABLE `episodes` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `Epno` varchar(255) DEFAULT NULL,
@@ -126,10 +153,10 @@ CREATE TABLE `Episodes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Generes`
+-- Table structure for table `generes`
 --
 
-CREATE TABLE `Generes` (
+CREATE TABLE `generes` (
   `id` int(11) NOT NULL,
   `Title` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
@@ -137,10 +164,10 @@ CREATE TABLE `Generes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Generes`
+-- Dumping data for table `generes`
 --
 
-INSERT INTO `Generes` (`id`, `Title`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `generes` (`id`, `Title`, `createdAt`, `updatedAt`) VALUES
 (1, 'action', '2024-02-05 07:35:55', '2024-02-05 07:35:55'),
 (2, 'romance', '2024-02-05 07:36:04', '2024-02-05 07:36:04'),
 (3, 'sports', '2024-02-05 07:36:11', '2024-02-05 07:36:11'),
@@ -156,15 +183,17 @@ INSERT INTO `Generes` (`id`, `Title`, `createdAt`, `updatedAt`) VALUES
 (13, 'ecchi', '2024-02-05 07:37:41', '2024-02-05 07:37:41'),
 (14, 'harem', '2024-02-05 07:37:58', '2024-02-05 07:37:58'),
 (15, 'historical', '2024-02-05 07:38:04', '2024-02-05 07:38:04'),
-(16, 'post-apocalyptic', '2024-02-05 07:38:15', '2024-02-05 07:38:15');
+(16, 'post-apocalyptic', '2024-02-05 07:38:15', '2024-02-05 07:38:15'),
+(18, 'shounen', '2024-02-06 17:24:19', '2024-02-06 17:24:19'),
+(19, 'martial arts', '2024-02-06 17:50:59', '2024-02-06 17:50:59');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `GeneresAnimes`
+-- Table structure for table `generesanimes`
 --
 
-CREATE TABLE `GeneresAnimes` (
+CREATE TABLE `generesanimes` (
   `id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
@@ -172,13 +201,49 @@ CREATE TABLE `GeneresAnimes` (
   `GenereId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `generesanimes`
+--
+
+INSERT INTO `generesanimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `GenereId`) VALUES
+(13, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 10),
+(14, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 1),
+(15, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 11),
+(16, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 7),
+(17, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 8),
+(18, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 4),
+(19, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 4),
+(20, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 1),
+(21, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 10),
+(22, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 8),
+(23, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 11),
+(24, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 1),
+(25, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 10),
+(26, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 8),
+(27, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 11),
+(28, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 18),
+(29, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 1),
+(30, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 10),
+(31, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 8),
+(32, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 4),
+(33, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 18),
+(34, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 18),
+(35, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 11),
+(36, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 1),
+(37, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 1),
+(38, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 18),
+(39, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 11),
+(40, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 19),
+(41, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 1),
+(42, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 11);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Rates`
+-- Table structure for table `rates`
 --
 
-CREATE TABLE `Rates` (
+CREATE TABLE `rates` (
   `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `Description` varchar(255) DEFAULT NULL,
@@ -187,10 +252,10 @@ CREATE TABLE `Rates` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Rates`
+-- Dumping data for table `rates`
 --
 
-INSERT INTO `Rates` (`id`, `title`, `Description`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `rates` (`id`, `title`, `Description`, `createdAt`, `updatedAt`) VALUES
 (1, 'g (general audiences)', NULL, '2024-02-05 07:25:56', '2024-02-06 10:18:44'),
 (2, 'pg (parental guidance suggested)', NULL, '2024-02-05 07:26:05', '2024-02-05 07:26:05'),
 (3, 'pg-13 (parental guidance strongly advised)', NULL, '2024-02-05 07:26:23', '2024-02-05 07:26:32'),
@@ -200,10 +265,10 @@ INSERT INTO `Rates` (`id`, `title`, `Description`, `createdAt`, `updatedAt`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `StudioAnimes`
+-- Table structure for table `studioanimes`
 --
 
-CREATE TABLE `StudioAnimes` (
+CREATE TABLE `studioanimes` (
   `id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
@@ -211,13 +276,26 @@ CREATE TABLE `StudioAnimes` (
   `StudioId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `studioanimes`
+--
+
+INSERT INTO `studioanimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `StudioId`) VALUES
+(3, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 2),
+(4, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 2),
+(5, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 7),
+(6, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 7),
+(7, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 7),
+(8, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 7),
+(9, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 6);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Studios`
+-- Table structure for table `studios`
 --
 
-CREATE TABLE `Studios` (
+CREATE TABLE `studios` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
@@ -225,10 +303,10 @@ CREATE TABLE `Studios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Studios`
+-- Dumping data for table `studios`
 --
 
-INSERT INTO `Studios` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `studios` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (2, 'toei animation', '2024-02-05 06:23:17', '2024-02-05 06:23:17'),
 (3, 'wit studio', '2024-02-05 06:23:39', '2024-02-05 06:23:39'),
 (4, 'madhouse', '2024-02-05 06:23:49', '2024-02-05 06:23:49'),
@@ -241,10 +319,10 @@ INSERT INTO `Studios` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Types`
+-- Table structure for table `types`
 --
 
-CREATE TABLE `Types` (
+CREATE TABLE `types` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
@@ -252,10 +330,10 @@ CREATE TABLE `Types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Types`
+-- Dumping data for table `types`
 --
 
-INSERT INTO `Types` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `types` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (1, 'tv series', '2024-02-05 07:15:32', '2024-02-05 07:15:32'),
 (2, 'movies', '2024-02-05 07:15:41', '2024-02-05 07:15:41'),
 (3, 'ovas (original video animations)', '2024-02-05 07:15:53', '2024-02-05 07:15:53'),
@@ -264,10 +342,10 @@ INSERT INTO `Types` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Userpics`
+-- Table structure for table `userpics`
 --
 
-CREATE TABLE `Userpics` (
+CREATE TABLE `userpics` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `pic` varchar(255) DEFAULT NULL,
@@ -276,10 +354,10 @@ CREATE TABLE `Userpics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Userpics`
+-- Dumping data for table `userpics`
 --
 
-INSERT INTO `Userpics` (`id`, `name`, `pic`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `userpics` (`id`, `name`, `pic`, `createdAt`, `updatedAt`) VALUES
 (3, 'vegeta', 'https://i.pinimg.com/564x/dc/35/8d/dc358d4220377b6ff2cdbe7e05bb9355.jpg', '2024-02-06 08:25:24', '2024-02-06 08:25:24'),
 (7, 'goku', 'https://i.pinimg.com/564x/2f/e8/2f/2fe82ff7ff7036713c6b998fbc62ae76.jpg', '2024-02-06 09:16:20', '2024-02-06 09:45:17'),
 (8, 'dazai', 'https://i.pinimg.com/736x/b3/f1/ca/b3f1ca5ce955d634548cce80bbf646c1.jpg', '2024-02-06 09:18:19', '2024-02-06 09:18:19'),
@@ -302,10 +380,10 @@ INSERT INTO `Userpics` (`id`, `name`, `pic`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `emailid` varchar(255) DEFAULT NULL,
@@ -316,10 +394,10 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `Users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`, `updatedAt`) VALUES
 (1, 'goku', 'goku@gmail.com', '$2b$10$Jsuyl7st20yse6EtwqU72eDwyHBKzzPeRsxYaDbaMFFc39tAn29QC', 1, '2024-01-29 10:40:16', '2024-01-29 10:40:16'),
 (2, 'vegeta', 'vegeta@gmail.com', '$2b$10$NEsa./y4Y7/MYph6W49qSOgkqKtUtMT.klJh2kNe4VDqOpD4bqBTW', 0, '2024-01-29 10:42:59', '2024-01-29 10:42:59');
 
@@ -328,94 +406,94 @@ INSERT INTO `Users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`,
 --
 
 --
--- Indexes for table `Adds`
+-- Indexes for table `adds`
 --
-ALTER TABLE `Adds`
+ALTER TABLE `adds`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `Description` (`Description`);
 
 --
--- Indexes for table `Animes`
+-- Indexes for table `animes`
 --
-ALTER TABLE `Animes`
+ALTER TABLE `animes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `description` (`description`) USING HASH,
   ADD KEY `RateId` (`RateId`),
   ADD KEY `TypeId` (`TypeId`);
 
 --
--- Indexes for table `AuthorAnimes`
+-- Indexes for table `authoranimes`
 --
-ALTER TABLE `AuthorAnimes`
+ALTER TABLE `authoranimes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `AnimeId` (`AnimeId`),
   ADD KEY `AuthorId` (`AuthorId`);
 
 --
--- Indexes for table `Authors`
+-- Indexes for table `authors`
 --
-ALTER TABLE `Authors`
+ALTER TABLE `authors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Episodes`
+-- Indexes for table `episodes`
 --
-ALTER TABLE `Episodes`
+ALTER TABLE `episodes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `Epno` (`Epno`),
   ADD KEY `AnimeId` (`AnimeId`);
 
 --
--- Indexes for table `Generes`
+-- Indexes for table `generes`
 --
-ALTER TABLE `Generes`
+ALTER TABLE `generes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `GeneresAnimes`
+-- Indexes for table `generesanimes`
 --
-ALTER TABLE `GeneresAnimes`
+ALTER TABLE `generesanimes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `AnimeId` (`AnimeId`),
   ADD KEY `GenereId` (`GenereId`);
 
 --
--- Indexes for table `Rates`
+-- Indexes for table `rates`
 --
-ALTER TABLE `Rates`
+ALTER TABLE `rates`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `StudioAnimes`
+-- Indexes for table `studioanimes`
 --
-ALTER TABLE `StudioAnimes`
+ALTER TABLE `studioanimes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `AnimeId` (`AnimeId`),
   ADD KEY `StudioId` (`StudioId`);
 
 --
--- Indexes for table `Studios`
+-- Indexes for table `studios`
 --
-ALTER TABLE `Studios`
+ALTER TABLE `studios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Types`
+-- Indexes for table `types`
 --
-ALTER TABLE `Types`
+ALTER TABLE `types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Userpics`
+-- Indexes for table `userpics`
 --
-ALTER TABLE `Userpics`
+ALTER TABLE `userpics`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `Users`
+-- Indexes for table `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `emailid` (`emailid`);
 
@@ -424,81 +502,81 @@ ALTER TABLE `Users`
 --
 
 --
--- AUTO_INCREMENT for table `Adds`
+-- AUTO_INCREMENT for table `adds`
 --
-ALTER TABLE `Adds`
+ALTER TABLE `adds`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `Animes`
+-- AUTO_INCREMENT for table `animes`
 --
-ALTER TABLE `Animes`
+ALTER TABLE `animes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `authoranimes`
+--
+ALTER TABLE `authoranimes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `authors`
+--
+ALTER TABLE `authors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `episodes`
+--
+ALTER TABLE `episodes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `AuthorAnimes`
+-- AUTO_INCREMENT for table `generes`
 --
-ALTER TABLE `AuthorAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `generes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `Authors`
+-- AUTO_INCREMENT for table `generesanimes`
 --
-ALTER TABLE `Authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+ALTER TABLE `generesanimes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `Episodes`
+-- AUTO_INCREMENT for table `rates`
 --
-ALTER TABLE `Episodes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `Generes`
---
-ALTER TABLE `Generes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `GeneresAnimes`
---
-ALTER TABLE `GeneresAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `Rates`
---
-ALTER TABLE `Rates`
+ALTER TABLE `rates`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `StudioAnimes`
+-- AUTO_INCREMENT for table `studioanimes`
 --
-ALTER TABLE `StudioAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `studioanimes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `Studios`
+-- AUTO_INCREMENT for table `studios`
 --
-ALTER TABLE `Studios`
+ALTER TABLE `studios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `Types`
+-- AUTO_INCREMENT for table `types`
 --
-ALTER TABLE `Types`
+ALTER TABLE `types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `Userpics`
+-- AUTO_INCREMENT for table `userpics`
 --
-ALTER TABLE `Userpics`
+ALTER TABLE `userpics`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `Users`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -506,38 +584,38 @@ ALTER TABLE `Users`
 --
 
 --
--- Constraints for table `Animes`
+-- Constraints for table `animes`
 --
-ALTER TABLE `Animes`
-  ADD CONSTRAINT `Animes_ibfk_1` FOREIGN KEY (`RateId`) REFERENCES `Rates` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Animes_ibfk_2` FOREIGN KEY (`TypeId`) REFERENCES `Types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `animes`
+  ADD CONSTRAINT `Animes_ibfk_1` FOREIGN KEY (`RateId`) REFERENCES `rates` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Animes_ibfk_2` FOREIGN KEY (`TypeId`) REFERENCES `types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `AuthorAnimes`
+-- Constraints for table `authoranimes`
 --
-ALTER TABLE `AuthorAnimes`
-  ADD CONSTRAINT `AuthorAnimes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `Animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `AuthorAnimes_ibfk_2` FOREIGN KEY (`AuthorId`) REFERENCES `Authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `authoranimes`
+  ADD CONSTRAINT `AuthorAnimes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `AuthorAnimes_ibfk_2` FOREIGN KEY (`AuthorId`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Episodes`
+-- Constraints for table `episodes`
 --
-ALTER TABLE `Episodes`
-  ADD CONSTRAINT `Episodes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `Animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `episodes`
+  ADD CONSTRAINT `Episodes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `GeneresAnimes`
+-- Constraints for table `generesanimes`
 --
-ALTER TABLE `GeneresAnimes`
-  ADD CONSTRAINT `GeneresAnimes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `Animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `GeneresAnimes_ibfk_2` FOREIGN KEY (`GenereId`) REFERENCES `Generes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `generesanimes`
+  ADD CONSTRAINT `GeneresAnimes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `GeneresAnimes_ibfk_2` FOREIGN KEY (`GenereId`) REFERENCES `generes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `StudioAnimes`
+-- Constraints for table `studioanimes`
 --
-ALTER TABLE `StudioAnimes`
-  ADD CONSTRAINT `StudioAnimes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `Animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `StudioAnimes_ibfk_2` FOREIGN KEY (`StudioId`) REFERENCES `Studios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `studioanimes`
+  ADD CONSTRAINT `StudioAnimes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `StudioAnimes_ibfk_2` FOREIGN KEY (`StudioId`) REFERENCES `studios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

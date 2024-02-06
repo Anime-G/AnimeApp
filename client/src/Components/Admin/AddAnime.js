@@ -50,7 +50,7 @@ const AddAnime = () => {
       if (result.data.msg) {
         message.success(result.data.msg);
         form.resetFields();
-        setImageUrl("");
+        
       } else {
         message.error(result.data.err);
       }
