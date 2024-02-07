@@ -96,7 +96,7 @@ const Nav = () => {
         setCurrent(e.key);
       };
       return (<>
-      <Menu theme="dark" onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+      <Menu theme="dark" style={{position:"sticky",top:0,zIndex:200}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
       {/* Routes */}
       <Routes>
         

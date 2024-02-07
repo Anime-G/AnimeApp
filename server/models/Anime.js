@@ -1,6 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Anime = sequelize.define("Anime", {
-    title: { type: DataTypes.STRING, allownull: false },
+    title: { type: DataTypes.STRING, allownull: false,get(){
+      const rawvalue=this.getDataValue('title');
+      return rawvalue?rawvalue.toUpperCase():null;
+    }  },
     description: { type: DataTypes.STRING(1000), allownull: false, unique: true },
     pic: { type: DataTypes.STRING(500), allownull: false },
     status: { type: DataTypes.INTEGER, defaultValue: 0, allownull: false },

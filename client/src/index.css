@@ -16,3 +16,21 @@ code {
 .custom-action-tab {
   background-color: transparent !important; /* Set the color of the action tab button */
 }
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+    opacity:.8
+  }
+  50% {
+    transform: scale(1.2);
+    opacity:.5
+  }
+  100% {
+    transform: scale(1);
+    opacity:.8
+  }
+}
+.heartbeat-icon
+{
+  animation: heartbeat infinite 1s ease-in-out;
+}

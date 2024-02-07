@@ -17,9 +17,9 @@ const Rate = () => {
   const [visibleup, setVisibleup] = useState(false);
   const dispatch = useDispatch();
   const onFinish = async (values) => {
-    let { title } = values;
+    let { title,Description } = values;
     title = trimString(title.toLowerCase());
-    const result = await axios.post(ApiBase + "/Rates/add", { title });
+    const result = await axios.post(ApiBase + "/Rates/add", { title,Description });
     if (result) {
       if (result.data.err) {
         message.error(result.data.err);
@@ -35,10 +35,10 @@ const Rate = () => {
     setVisible(false);
   };
   const onFinishup = async (values) => {
-    let { id, title } = values;
+    let { id, title,Description } = values;
     title = trimString(title.toLowerCase());
     title = trimString(title);
-    const result = await axios.patch(ApiBase + "/Rates/update", { title, id });
+    const result = await axios.patch(ApiBase + "/Rates/update", { title, id,Description });
     if (result) {
       if (result.data.err) {
         message.error(result.data.err);
@@ -89,6 +89,12 @@ const Rate = () => {
       dataIndex: "title",
       key: "title",
       render: (text, record, index) =>record.title.toUpperCase()
+    },
+    {
+      title: "Description",
+      dataIndex: "Description",
+      key: "Description",
+      
     },
     {
       title: "update",
@@ -162,6 +168,18 @@ const Rate = () => {
       >
         <Input />
       </Form.Item>
+      <Form.Item
+        label="Description"
+        name="Description"
+        rules={[
+          {
+            required: true,
+            message: "Please input Rate Description!",
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
     </Form>
   );
   const modalUpForm = (
@@ -202,6 +220,18 @@ const Rate = () => {
           {
             required: true,
             message: "Please input Rate title!",
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="Description"
+        name="Description"
+        rules={[
+          {
+            required: true,
+            message: "Please input Rate Description!",
           },
         ]}
       >

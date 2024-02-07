@@ -16,7 +16,7 @@ router.post("/add", async (req, res) => {
   const { title } = req.body;
   const count = await Rates.count({where:{ title }});
   if (count===0) {
-    const result = await Rates.create({ title });
+    const result = await Rates.create({ title,Description });
     if (result) {
       res.json({ msg: "Rate Added!" });
     } else {
@@ -28,10 +28,10 @@ router.post("/add", async (req, res) => {
   }
 });
 router.patch("/update", async (req, res) => {
-  const { title,id } = req.body;
+  const { title,id,Description } = req.body;
   const count = await Rates.count({where:{ id }});
   if (count===1) {
-    const result = await Rates.update({ title },{where: {id}});
+    const result = await Rates.update({ title ,Description},{where: {id}});
     if (result) {
       res.json({ msg: "Rate Updated!" });
     } else {
