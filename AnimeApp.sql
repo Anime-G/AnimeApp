@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 07, 2024 at 05:27 AM
+-- Generation Time: Feb 07, 2024 at 12:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -184,7 +184,6 @@ INSERT INTO `Generes` (`id`, `Title`, `createdAt`, `updatedAt`) VALUES
 (14, 'harem', '2024-02-05 07:37:58', '2024-02-05 07:37:58'),
 (15, 'historical', '2024-02-05 07:38:04', '2024-02-05 07:38:04'),
 (16, 'post-apocalyptic', '2024-02-05 07:38:15', '2024-02-05 07:38:15'),
-(18, 'shounen', '2024-02-06 17:24:19', '2024-02-06 17:24:19'),
 (19, 'martial arts', '2024-02-06 17:50:59', '2024-02-06 17:50:59');
 
 -- --------------------------------------------------------
@@ -221,17 +220,13 @@ INSERT INTO `GeneresAnimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `GenereI
 (25, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 10),
 (26, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 8),
 (27, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 11),
-(28, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 18),
 (29, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 1),
 (30, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 10),
 (31, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 8),
 (32, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 4),
-(33, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 18),
-(34, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 18),
 (35, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 11),
 (36, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 1),
 (37, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 1),
-(38, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 18),
 (39, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 11),
 (40, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 19),
 (41, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 1),
@@ -256,11 +251,11 @@ CREATE TABLE `Rates` (
 --
 
 INSERT INTO `Rates` (`id`, `title`, `Description`, `createdAt`, `updatedAt`) VALUES
-(1, 'g (general audiences)', NULL, '2024-02-05 07:25:56', '2024-02-06 10:18:44'),
-(2, 'pg (parental guidance suggested)', NULL, '2024-02-05 07:26:05', '2024-02-05 07:26:05'),
-(3, 'pg-13 (parental guidance strongly advised)', NULL, '2024-02-05 07:26:23', '2024-02-05 07:26:32'),
-(4, 'r (restricted)', NULL, '2024-02-05 07:26:41', '2024-02-05 07:26:41'),
-(5, 'nc-17 (no one 17 and under admitted)', NULL, '2024-02-05 07:26:58', '2024-02-05 07:26:58');
+(1, 'g', 'GENERAL AUDIENCES', '2024-02-05 07:25:56', '2024-02-07 05:06:01'),
+(2, 'pg', 'PARENTAL GUIDANCE SUGGESTED', '2024-02-05 07:26:05', '2024-02-07 05:06:22'),
+(3, 'pg-13', 'PARENTAL GUIDANCE STRONGLY ADVISED', '2024-02-05 07:26:23', '2024-02-07 05:06:32'),
+(4, 'r', 'RESTRICTED', '2024-02-05 07:26:41', '2024-02-07 05:06:42'),
+(5, 'nc-17', 'NO ONE 17 AND UNDER ADMITTED', '2024-02-05 07:26:58', '2024-02-07 05:06:11');
 
 -- --------------------------------------------------------
 
@@ -398,7 +393,7 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, 'goku', 'goku@gmail.com', '$2b$10$Jsuyl7st20yse6EtwqU72eDwyHBKzzPeRsxYaDbaMFFc39tAn29QC', 1, '2024-01-29 10:40:16', '2024-01-29 10:40:16'),
+(1, 'Son-goku', 'goku@gmail.com', '$2b$10$Jsuyl7st20yse6EtwqU72eDwyHBKzzPeRsxYaDbaMFFc39tAn29QC', 1, '2024-01-29 10:40:16', '2024-01-29 10:40:16'),
 (2, 'vegeta', 'vegeta@gmail.com', '$2b$10$NEsa./y4Y7/MYph6W49qSOgkqKtUtMT.klJh2kNe4VDqOpD4bqBTW', 0, '2024-01-29 10:42:59', '2024-01-29 10:42:59');
 
 --
@@ -511,13 +506,13 @@ ALTER TABLE `Adds`
 -- AUTO_INCREMENT for table `Animes`
 --
 ALTER TABLE `Animes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `AuthorAnimes`
 --
 ALTER TABLE `AuthorAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `Authors`
@@ -541,7 +536,7 @@ ALTER TABLE `Generes`
 -- AUTO_INCREMENT for table `GeneresAnimes`
 --
 ALTER TABLE `GeneresAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `Rates`
@@ -553,7 +548,7 @@ ALTER TABLE `Rates`
 -- AUTO_INCREMENT for table `StudioAnimes`
 --
 ALTER TABLE `StudioAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `Studios`

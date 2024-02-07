@@ -12,8 +12,8 @@ const {
 } = require("../models");
 const router = express.Router();
 router.get("/find/:id", async (req, res) => {
-  const {id}=req.params;
-  const anime = await Anime.findOne({where:{id}});
+  const { id } = req.params;
+  const anime = await Anime.findOne({ where: { id } });
 
   const TotalData = [];
   let Studios = [];
@@ -21,49 +21,72 @@ router.get("/find/:id", async (req, res) => {
   let Authors = [];
   let Rate = {};
   let Type = {};
-  let result,s,G,A,TotalObject;
-  
-    //Rate
-    result = await Rates.findOne({ where: { id: anime.RateId },attributes:{exclude:['createdAt','updatedAt']} });
-    Rate=result;
-    //Type
-    result = await Types.findOne({ where: { id: anime.TypeId } ,attributes:{exclude:['createdAt','updatedAt']}});
-    Type=result;
-    //Studio id of This Anime
-    result = await StudioAnime.findAll({ where: { AnimeId: anime.id } });
-    s=result;
-    
-    for(let is=0;is<s.length;is++)
-    {
-        result=await Studio.findOne({where:{id:s[is].StudioId},attributes:{exclude:['createdAt','updatedAt']}});
-        
-        Studios.push(result);
-    }
-    //Author id of this Anime
-    result = await AuthorAnime.findAll({ where: { AnimeId: anime.id } });
-    A=result;
-    for(let ia=0;ia<A.length;ia++)
-    {
-        result=await Author.findOne({where:{id:A[ia].AuthorId},attributes:{exclude:['createdAt','updatedAt']}});
-        Authors.push(result);
-    }
-    //Author id of this Anime
-    result = await GeneresAnime.findAll({ where: { AnimeId: anime.id }});
-    G=result;
-    for(ig=0;ig<G.length;ig++)
-    {
-        result=await Generes.findOne({where:{id:G[ig].GenereId},attributes:{exclude:['createdAt','updatedAt']}});
-        generes.push(result);
-    }
-    const {title,description,pic,status}=anime;
-    TotalObject={id,title,description,pic,status,Type,Rate,generes,Authors,Studios};
-    console.log("Data ",TotalObject);
-    TotalData.push(TotalObject)
+  let result, s, G, A, TotalObject;
+
+  //Rate
+  result = await Rates.findOne({
+    where: { id: anime.RateId },
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+  });
+  Rate = result;
+  //Type
+  result = await Types.findOne({
+    where: { id: anime.TypeId },
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+  });
+  Type = result;
+  //Studio id of This Anime
+  result = await StudioAnime.findAll({ where: { AnimeId: anime.id } });
+  s = result;
+
+  for (let is = 0; is < s.length; is++) {
+    result = await Studio.findOne({
+      where: { id: s[is].StudioId },
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+
+    Studios.push(result);
+  }
+  //Author id of this Anime
+  result = await AuthorAnime.findAll({ where: { AnimeId: anime.id } });
+  A = result;
+  for (let ia = 0; ia < A.length; ia++) {
+    result = await Author.findOne({
+      where: { id: A[ia].AuthorId },
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    Authors.push(result);
+  }
+  //Author id of this Anime
+  result = await GeneresAnime.findAll({ where: { AnimeId: anime.id } });
+  G = result;
+  for (ig = 0; ig < G.length; ig++) {
+    result = await Generes.findOne({
+      where: { id: G[ig].GenereId },
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    generes.push(result);
+  }
+  const { title, description, pic, status } = anime;
+  TotalObject = {
+    id,
+    title,
+    description,
+    pic,
+    status,
+    Type,
+    Rate,
+    generes,
+    Authors,
+    Studios,
+  };
+  console.log("Data ", TotalObject);
+  TotalData.push(TotalObject);
 
   res.json(TotalData);
 });
 router.get("/", async (req, res) => {
-  const anime = await Anime.findAll({order:['title']});
+  const anime = await Anime.findAll({ order: ["title"] });
 
   const TotalData = [];
   let Studios = [];
@@ -71,7 +94,7 @@ router.get("/", async (req, res) => {
   let Authors = [];
   let Rate = {};
   let Type = {};
-  let result,s,G,A,TotalObject;
+  let result, s, G, A, TotalObject;
   for (let i = 0; i < anime.length; i++) {
     Studios = [];
     generes = [];
@@ -80,42 +103,65 @@ router.get("/", async (req, res) => {
     Type = {};
     result;
     //Rate
-    result = await Rates.findOne({ where: { id: anime[i].RateId },attributes:{exclude:['id','createdAt','updatedAt']} });
-    Rate=result;
+    result = await Rates.findOne({
+      where: { id: anime[i].RateId },
+      attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+    });
+    Rate = result;
     //Type
-    result = await Types.findOne({ where: { id: anime[i].TypeId } ,attributes:{exclude:['id','createdAt','updatedAt']}});
-    Type=result;
+    result = await Types.findOne({
+      where: { id: anime[i].TypeId },
+      attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+    });
+    Type = result;
     //Studio id of This Anime
     result = await StudioAnime.findAll({ where: { AnimeId: anime[i].id } });
-    s=result;
-    
-    for(let is=0;is<s.length;is++)
-    {
-        result=await Studio.findOne({where:{id:s[is].StudioId},attributes:{exclude:['id','createdAt','updatedAt']}});
-        
-        Studios.push(result);
+    s = result;
+
+    for (let is = 0; is < s.length; is++) {
+      result = await Studio.findOne({
+        where: { id: s[is].StudioId },
+        attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+      });
+
+      Studios.push(result);
     }
     //Author id of this Anime
     result = await AuthorAnime.findAll({ where: { AnimeId: anime[i].id } });
-    A=result;
-    for(let ia=0;ia<A.length;ia++)
-    {
-        result=await Author.findOne({where:{id:A[ia].AuthorId},attributes:{exclude:['id','createdAt','updatedAt']}});
-        Authors.push(result);
+    A = result;
+    for (let ia = 0; ia < A.length; ia++) {
+      result = await Author.findOne({
+        where: { id: A[ia].AuthorId },
+        attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+      });
+      Authors.push(result);
     }
     //Author id of this Anime
-    result = await GeneresAnime.findAll({ where: { AnimeId: anime[i].id }});
-    G=result;
-    for(ig=0;ig<G.length;ig++)
-    {
-        result=await Generes.findOne({where:{id:G[ig].GenereId},attributes:{exclude:['id','createdAt','updatedAt']}});
-        generes.push(result);
+    result = await GeneresAnime.findAll({ where: { AnimeId: anime[i].id } });
+    G = result;
+    for (ig = 0; ig < G.length; ig++) {
+      result = await Generes.findOne({
+        where: { id: G[ig].GenereId },
+        attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+      });
+      generes.push(result);
     }
-    const {id,title,description,pic,status}=anime[i];
-    TotalObject={id,title,description,pic,status,Type,Rate,generes,Authors,Studios};
-    console.log("Data ",TotalObject);
-    TotalData.push(TotalObject)
-}
+    const { id, title, description, pic, status } = anime[i];
+    TotalObject = {
+      id,
+      title,
+      description,
+      pic,
+      status,
+      Type,
+      Rate,
+      generes,
+      Authors,
+      Studios,
+    };
+    console.log("Data ", TotalObject);
+    TotalData.push(TotalObject);
+  }
   res.json(TotalData);
 });
 router.post("/add", async (req, res) => {
@@ -166,16 +212,33 @@ router.post("/add", async (req, res) => {
     res.json({ err: "Anime Is Repeated!" });
   }
 });
-router.delete("/delete/:id",async(req,res)=>{
-  const {id}=req.params;
-  const result=await Anime.destroy({where :{id}});
-  if(result)
-  {
-    res.json({msg:"Anime is Delete with All It's Episode"});
+router.get("/findall/:id", async (req, res) => {
+  const { id } = req.params;
+  const data = await Anime.findOne({
+    where: { id },
+    include: [
+      {
+        model: AuthorAnime,
+        include: [
+          {
+            
+            model: Author,
+            attributes: ['name'],
+             // Include only the name attribute of the author
+          }
+        ]
+      }
+    ]
+  });
+  res.json(data);
+});
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await Anime.destroy({ where: { id } });
+  if (result) {
+    res.json({ msg: "Anime is Delete with All It's Episode" });
+  } else {
+    res.json({ err: "Anime is not Deleted!" });
   }
-  else{
-    res.json({err:"Anime is not Deleted!"});
-
-  }
-})
+});
 module.exports = router;
