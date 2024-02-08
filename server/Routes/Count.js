@@ -11,6 +11,7 @@ const router = express.Router();
 //   Generes,✅
 //   Userpic,✅
 //   Adds✅
+//Episode
 
 
   router.get("/",async (req, res) => {
@@ -22,9 +23,10 @@ const router = express.Router();
     const Authors = await db.Author.count()
     const userpic = await db.Userpic.count();
     const Generes = await db.Generes.count();
+    const Episodes = await db.Episode.count();
     const Adds = await db.Adds.count();
     const Animes = await db.Anime.count();
-    const data={Studios,Types,Rates,Users,Authors,userpic,Generes,Adds,Animes}
+    const data={Studios,Types,Episodes,Rates,Users,Authors,userpic,Generes,Adds,Animes}
     res.json(data);
 
   });

@@ -9,7 +9,10 @@ const {
   Generes,
   StudioAnime,
   GeneresAnime,
+  Episode,
+  sequelize
 } = require("../models");
+const _ =require('lodash')
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -86,7 +89,7 @@ router.get("/", async (req, res) => {
       Authors,
       Studios,
     };
-    console.log("Data ", TotalObject);
+    // console.log("Data ", TotalObject);
     TotalData.push(TotalObject);
   }
   res.json(TotalData);
@@ -213,4 +216,14 @@ router.delete("/delete/:id", async (req, res) => {
     res.json({ err: "Anime is not Deleted!" });
   }
 });
+//get Only those Anime which have the Episodes
+router.get("/getAnimeWithEps",async(req,res)=>{
+  const result=await Episode.findAll({ attributes:  [[sequelize.fn('DISTINCT', sequelize.col('AnimeId')), 'AnimeId']]})
+  const AnimeId=[];
+  result.forEach(element => {
+      AnimeId.push(element.AnimeId)
+  });
+  const Animedata=await Anime.findAll({where:{id:AnimeId},attributes:['id','title']});
+  res.json(Animedata)
+})
 module.exports = router;

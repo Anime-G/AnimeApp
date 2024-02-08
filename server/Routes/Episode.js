@@ -6,25 +6,30 @@ router.get('/',async(req,res)=>{
   const result=await Episode.findAll({order:['Epno']});
   res.json(result);
 })
+router.get('/:id',async(req,res)=>{
+  const {id}=req.params;
+  const result=await Episode.findAll({where:{AnimeId:id},order:['Epno']});
+  res.json(result);
+})
 router.get('/find/:id',async(req,res)=>{
   const result=await Episode.findOne({where:{id:req.params.id}});
   res.json(result);
 })
 
 router.post("/add", async (req, res) => {
-  const { title,url,AnimeId } = req.body;
-  console.log({ title,url,AnimeId });
-  const count = await Episode.count({where:{ title }});
+  const { title,url,AnimeId,Epno } = req.body;
+  console.log({ title,url,AnimeId,Epno });
+  const count = await Episode.count({where:{ Epno ,AnimeId}});
   if (count===0) {
-    const result = await Episode.create({ title,url,AnimeId });
+    const result = await Episode.create({ title,url,AnimeId,Epno });
     if (result) {
-      res.json({ msg: "Ad Added!" });
+      res.json({ msg: "Episode Added!" });
     } else {
-      res.json({ err: "Ad is Not Added!" });
+      res.json({ err: "Episode is Not Added!" });
     }
   }
   else{
-    res.json({ err: "Ad is Already in List!" });
+    res.json({ err: "Episode No is repeating!" });
   }
 });
 router.patch("/update", async (req, res) => {
