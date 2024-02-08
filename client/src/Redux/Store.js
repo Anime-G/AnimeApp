@@ -7,6 +7,8 @@ import genereSlice from "./Genere/Reducer";
 import adsSlice from "./Ads/Reducer";
 import UserpicSlice from "./userpic/Reducer";
 import AnimeSlice from "./Anime/Reducer";
+import CountSlice from "./Count/Reducer";
+import EpisodeSlice from "./Count/Reducer";
 // import AuthorReducer from "./Author/Reducer";
 
 const store = configureStore({
@@ -19,6 +21,8 @@ const store = configureStore({
     Ads: adsSlice,
     UserPics: UserpicSlice,
     Animes:AnimeSlice,
+    Counts:CountSlice,
+    Episodes:EpisodeSlice,
   },
 });
 

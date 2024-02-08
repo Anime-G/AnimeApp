@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Menu } from 'antd'
 import { DatabaseOutlined, FileAddOutlined, GroupOutlined, HomeOutlined, InfoCircleOutlined, LoginOutlined, LogoutOutlined, ProfileOutlined, UserOutlined, UsergroupAddOutlined } from '@ant-design/icons'
 import { Link, Route, Routes } from 'react-router-dom';
-import Home from './Home';
+import Home from './Admin/Home';
 import { AuthContext } from '../Helper/AuthContext';
 import Login from './Login';
 import Generaldata from './Admin/Generaldata';
@@ -19,16 +19,14 @@ const Nav = () => {
 
     }
     // console.log(user);
-    const items = [
-        {
-          label: (<Link to="/" >Home</Link>),
-          key: 'Home',
-          icon: <HomeOutlined />,
-        }
-      ];
+    const items = [];
       if(!user.id)
       {
         items.push({
+          label: (<Link to="/" >Home</Link>),
+          key: 'Home',
+          icon: <HomeOutlined />,
+        },{
             label: (<Link to="/login" >Login</Link>),
             key: 'Login',
             icon:<LoginOutlined />,
@@ -39,6 +37,10 @@ const Nav = () => {
         if(user.status===1)
         {
           items.push({
+            label: (<Link to="/admin/Home" >Home</Link>),
+            key: 'Home',
+            icon: <HomeOutlined />,
+          },{
             label: (<Link to="/admin/generaldata" >general Data</Link>),
             key: 'generealInfo',
             icon: <InfoCircleOutlined />,
@@ -100,11 +102,13 @@ const Nav = () => {
       {/* Routes */}
       <Routes>
         
-        <Route path='/' element={<Home/>} />
+        {/* <Route path='/' element={<Home/>} /> */}
         <Route path='/login' element={<Login/>} />
         
         {user.status===1?
         (<>
+        <Route path='/admin/Home' element={<Home/>} />
+
         <Route path='/admin/generaldata' element={<Generaldata/>} />
         <Route path='/admin/Anime' element={<Anime/>} />
         <Route path='/admin/Episode' element={<Episode/>} />

@@ -14,6 +14,8 @@ const Genere=require('./Routes/Genere');
 const Ads=require('./Routes/Ads');
 const Userpic=require('./Routes/Userpic');
 const Anime=require('./Routes/Anime');
+const Count=require('./Routes/Count');
+const Episode=require('./Routes/Episode');
 
 app.use('/users',users)
 app.use('/Authors',Author)
@@ -24,6 +26,8 @@ app.use('/Generes',Genere)
 app.use('/Ads',Ads)
 app.use('/Userpic',Userpic)
 app.use('/Animes',Anime)
+app.use('/Count',Count)
+app.use('/Episodes',Episode)
 db.sequelize.sync().then(()=>{
     app.listen(port,()=>{
         console.log("Port: ",port);

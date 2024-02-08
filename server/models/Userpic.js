@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     pic: { type: DataTypes.STRING, allownull: false },
   });
-
+  Userpics.associate=(models)=>{
+    Userpics.hasOne(models.Users,{
+        allowNull: true ,
+        default:null,
+    });
+  }
   return Userpics;
 };

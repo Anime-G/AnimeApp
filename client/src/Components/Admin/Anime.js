@@ -47,7 +47,7 @@ const Anime = () => {
   const Animes = useSelector((state) => state.Animes.Data);
   const [currentPage, setCurrentPage] = useState(1);
   const [upform] = Form.useForm();
-  const pageSize = 3;
+  const pageSize = 5;
   const [visibleup, setVisibleup] = useState(false);
   const [pic, setImageUrl] = useState("");
   const startIndex = (currentPage - 1) * pageSize;
@@ -696,7 +696,7 @@ const Anime = () => {
           borderRadius: "10px",
           padding: 20,
           width: "90%",
-          margin: "0px auto",
+          margin: "15px auto",
         }}
       >
         <Tabs defaultActiveKey="1" items={items} />
