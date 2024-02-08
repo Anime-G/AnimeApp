@@ -1,3 +1,4 @@
+
 module.exports = (sequelize, DataTypes) => {
     const AuthorAnime = sequelize.define("AuthorAnime", {
       
@@ -5,4 +6,3 @@ module.exports = (sequelize, DataTypes) => {
     
     return AuthorAnime;
   };
-  

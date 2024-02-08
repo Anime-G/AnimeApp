@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     Rate.hasMany(models.Anime, {
       onDelete: "cascade",
     });
+   
   };
+
   return Rate;
 };

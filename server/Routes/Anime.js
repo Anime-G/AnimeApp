@@ -214,23 +214,19 @@ router.post("/add", async (req, res) => {
 });
 router.get("/findall/:id", async (req, res) => {
   const { id } = req.params;
-  const data = await Anime.findOne({
+  const result=await Anime.findAll({
     where: { id },
+    attributes: { exclude: ["RateId", "TypeId"] },
     include: [
-      {
-        model: AuthorAnime,
-        include: [
-          {
-            
-            model: Author,
-            attributes: ['name'],
-             // Include only the name attribute of the author
-          }
-        ]
-      }
-    ]
-  });
-  res.json(data);
+      { model: Author,attributes:['id','name'], through: { attributes: [] } },
+      { model: Generes,attributes:['id','Title'], through: { attributes: [] } },
+      { model: Studio,attributes:['id','name'], through: { attributes: [] } },
+      { model: Rates, attributes: ["id", "title"] },
+      { model: Types, attributes: ["id", "name"] },
+    ],
+    // Including the Author model
+  })
+  res.json(result)  
 });
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;

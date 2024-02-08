@@ -25,6 +25,12 @@ module.exports = (sequelize, DataTypes) => {
     Anime.hasMany(models.GeneresAnime,{
         onDelete:'cascade'
     })
+    Anime.belongsToMany(models.Author, { through: models.AuthorAnime }); 
+    Anime.belongsToMany(models.Generes, { through: models.GeneresAnime }); 
+    Anime.belongsToMany(models.Studio, { through: models.StudioAnime }); 
+    Anime.belongsTo(models.Rates); 
+    Anime.belongsTo(models.Types); 
+
   }
   return Anime;
 };
