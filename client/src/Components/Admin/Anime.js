@@ -35,6 +35,7 @@ import { fetch as Typefetch } from "../../Redux/Type/Reducer";
 import { fetch as Authfetch } from "../../Redux/Author/Reducer";
 import { fetch as StudioFetch } from "../../Redux/Studio/Reducer";
 import { fetch as GenereFetch } from "../../Redux/Genere/Reducer";
+import { trimString } from "../../Trimmer";
 
 const Anime = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const Anime = () => {
   const Generes = useSelector((state) => state.Genere.Data);
   const Animes = useSelector((state) => state.Animes.Data);
   const [currentPage, setCurrentPage] = useState(1);
-  const [upform] =Form.useForm();
+  const [upform] = Form.useForm();
   const pageSize = 3;
   const [visibleup, setVisibleup] = useState(false);
   const [pic, setImageUrl] = useState("");
@@ -116,20 +117,21 @@ const Anime = () => {
   };
   const onFinishup = async (values) => {
     console.log("Received values:", values);
-    // let { id, Description, title, pic } = values;
-    // Description = trimString(Description);
-    // pic = trimString(pic);
-    // title = trimString(title).toLowerCase();
-    // values = { id,Description, title, pic };
-    // console.log(values);
-    // const result = await axios.patch(ApiBase + "/Ads/update", values);
-    // if (result) {
-    //   if (result.data.msg) {
-    //     message.success(result.data.msg);
-    //   } else {
-    //     message.error(result.data.err);
-    //   }
-    // }
+    let {id,AuthorId,StudioId,GenereId,RateId,TypeId,status,name,pic,description}=values;
+    name=trimString(name).toLowerCase();
+    pic=trimString(pic);
+    description=trimString(description);
+    values={id,AuthorId,GenereId,StudioId,RateId,TypeId,status,name,pic,description};
+
+    console.log(values);
+    const result = await axios.patch(ApiBase + "/Animes/update", values);
+    if (result) {
+      if (result.data.msg) {
+        message.success(result.data.msg);
+      } else {
+        message.error(result.data.err);
+      }
+    }
     getAnime();
     upform.resetFields();
 
@@ -137,15 +139,15 @@ const Anime = () => {
     setVisibleup(false); // Close the modal after form submission
     upform.resetFields();
   };
-  const upmodal=(
+  const upmodal = (
     <Modal
-    title="Update Anime Data"
-    open={visibleup}
-    onCancel={handleCancelup}
-    footer={null}
-    width={"90%"}
-  >
-    <Form
+      title="Update Anime Data"
+      open={visibleup}
+      onCancel={handleCancelup}
+      footer={null}
+      width={"90%"}
+    >
+      <Form
         form={upform}
         name="Anime Add"
         labelCol={{
@@ -167,6 +169,20 @@ const Anime = () => {
         <div>
           <Row gutter={24}>
             <Col span="12">
+              <Form.Item
+                label="Anime id"
+                name="id"
+                hidden
+                noStyle
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input Anime Name!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
               <Form.Item
                 label="Anime name"
                 name="name"
@@ -209,19 +225,18 @@ const Anime = () => {
               </Form.Item>
             </Col>
             <Col span="12">
-            <Space.Compact style={{ width: "100%" }}>
-
-              <Form.Item
-              style={{ width: "100%" }}
-                label="Rate"
-                name="RateId"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please Select Rate!",
-                  },
-                ]}
-              >
+              <Space.Compact style={{ width: "100%" }}>
+                <Form.Item
+                  style={{ width: "100%" }}
+                  label="Rate"
+                  name="RateId"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please Select Rate!",
+                    },
+                  ]}
+                >
                   <Select key={Rates}>
                     {Rates.map((rate) => {
                       return (
@@ -231,17 +246,14 @@ const Anime = () => {
                       );
                     })}
                   </Select>
-              </Form.Item>
-                  <Button title="Refresh" onClick={() => getAuthor()}>
-                    <ReloadOutlined />
-                  </Button>
-                </Space.Compact>
+                </Form.Item>
+                <Button title="Refresh" onClick={() => getAuthor()}>
+                  <ReloadOutlined />
+                </Button>
+              </Space.Compact>
             </Col>
-            <Col span="12" >
-
-
-
-              <Space.Compact style={{ width: "100%", margin: "0px auto" }} >
+            <Col span="12">
+              <Space.Compact style={{ width: "100%", margin: "0px auto" }}>
                 <Form.Item
                   style={{ width: "100%" }}
                   label="Type"
@@ -250,7 +262,7 @@ const Anime = () => {
                     {
                       required: true,
                       message: "Please Select Type!",
-                    }
+                    },
                   ]}
                 >
                   <Select required key={Types}>
@@ -266,14 +278,10 @@ const Anime = () => {
                 <Button title="Refresh" onClick={() => gettype()}>
                   <ReloadOutlined />
                 </Button>
-
               </Space.Compact>
-
-
             </Col>
             <Col span="12">
-
-              <Space.Compact style={{ width: "100%", margin: "0px auto" }} >
+              <Space.Compact style={{ width: "100%", margin: "0px auto" }}>
                 <Form.Item
                   style={{ width: "100%" }}
                   label="Author"
@@ -282,10 +290,9 @@ const Anime = () => {
                     {
                       required: true,
                       message: "Please Select Authors!",
-                    }
+                    },
                   ]}
                 >
-
                   <Select
                     mode="multiple"
                     key={Authors}
@@ -309,12 +316,9 @@ const Anime = () => {
                   <ReloadOutlined />
                 </Button>
               </Space.Compact>
-
-
             </Col>
             <Col span="12">
               <Space.Compact style={{ width: "100%" }}>
-
                 <Form.Item
                   style={{ width: "100%" }}
                   label="Studio"
@@ -326,7 +330,6 @@ const Anime = () => {
                     },
                   ]}
                 >
-
                   <Select
                     mode="multiple"
                     key={Studios}
@@ -345,7 +348,6 @@ const Anime = () => {
                       );
                     })}
                   </Select>
-
                 </Form.Item>
                 <Button title="Refresh" onClick={() => getStudio()}>
                   <ReloadOutlined />
@@ -354,7 +356,6 @@ const Anime = () => {
             </Col>
             <Col span="12">
               <Space.Compact style={{ width: "100%" }}>
-
                 <Form.Item
                   style={{ width: "100%" }}
                   label="Generes"
@@ -410,7 +411,7 @@ const Anime = () => {
             </Col>
             <Col
               span={12}
-              style={{ position: "absolute", top: "50", right: 0 }}
+              style={{ position: "absolute", top: "50", right: 20 }}
             >
               <Form.Item
                 wrapperCol={{
@@ -436,18 +437,33 @@ const Anime = () => {
             </Button>
           </Form.Item>
         </div>
-      </Form >
-  </Modal>)
+      </Form>
+    </Modal>
+  );
 
- 
-  const finddata =async (id) => {
-    const data=await axios.get(ApiBase+"/Animes/find/"+id);
+  const finddata = async (id) => {
+    const data = await axios.get(ApiBase + "/Animes/find/" + id);
 
     console.log(data.data);
-    // const {title,Description,pic}=result[0];
+
+    const { title, description,status, pic,Rate,Type, Authors,Studios,Generes } = data.data;
     // console.log({title,Description,pic});
-    upform.setFieldsValue();
+    console.log();
+    upform.setFieldsValue({
+      id,
+      name: title,
+      description,
+      pic,
+      RateId:Rate.id,
+      TypeId:Type.id,
+      AuthorId: Authors.map((Author) => Author.id),
+      StudioId: Studios.map((Studio) => Studio.id),
+      GenereId: Generes.map((Genere) => Genere.id),
+      status:status
+    });
+    setImageUrl(pic)
     showModalup();
+    
   };
   const renderCards = () => {
     return Animes.slice(startIndex, endIndex).map((item, index) => {
@@ -465,11 +481,16 @@ const Anime = () => {
             width="auto"
           />
           <div>
-            {item.title.toUpperCase()+ " "}<Tag
-            bordered={false}
-            style={{color:"white",background:!item.status ? "skyblue" : "mediumseagreen"}}
-            
-          >{!item.status ? "Continue" : "Complete"}</Tag>
+            {item.title.toUpperCase() + " "}
+            <Tag
+              bordered={false}
+              style={{
+                color: "white",
+                background: !item.status ? "skyblue" : "mediumseagreen",
+              }}
+            >
+              {!item.status ? "Continue" : "Complete"}
+            </Tag>
             <hr />
             <Tooltip placement="right" style={{}} title={item.description}>
               Description:
@@ -556,7 +577,7 @@ const Anime = () => {
             {item.title}
           </div>
           <Button
-          onClick={()=>finddata(item.id)}
+            onClick={() => finddata(item.id)}
             style={{
               position: "absolute",
               bottom: "0%",
@@ -605,7 +626,7 @@ const Anime = () => {
       );
     });
   };
-  
+
   const items = [
     {
       key: "1",
@@ -636,17 +657,19 @@ const Anime = () => {
     {
       key: "2",
       label: (
-        <><PlusSquareOutlined /> Add</>
+        <>
+          <PlusSquareOutlined /> Add
+        </>
       ),
       children: <AddAnime />,
-    }
+    },
   ];
   const getAnime = async () => {
     const data = await axios.get(ApiBase + "/Animes/");
     console.log(data.data);
     dispatch(fetch(data.data));
   };
-  
+
   const deleteAnime = async (id) => {
     console.log(id);
     const result = await axios.delete(ApiBase + "/Animes/delete/" + id);

@@ -1,6 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Episode = sequelize.define("Episode", {
         title: { type: DataTypes.STRING, allownull: false },
+        url: { type: DataTypes.STRING(1000), allownull: false },
       Epno: { type: DataTypes.STRING, allownull: false,unique:true },
     });
 // Rated G: General audiences – All ages admitted.

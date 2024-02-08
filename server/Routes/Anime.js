@@ -11,80 +11,7 @@ const {
   GeneresAnime,
 } = require("../models");
 const router = express.Router();
-router.get("/find/:id", async (req, res) => {
-  const { id } = req.params;
-  const anime = await Anime.findOne({ where: { id } });
 
-  const TotalData = [];
-  let Studios = [];
-  let generes = [];
-  let Authors = [];
-  let Rate = {};
-  let Type = {};
-  let result, s, G, A, TotalObject;
-
-  //Rate
-  result = await Rates.findOne({
-    where: { id: anime.RateId },
-    attributes: { exclude: ["createdAt", "updatedAt"] },
-  });
-  Rate = result;
-  //Type
-  result = await Types.findOne({
-    where: { id: anime.TypeId },
-    attributes: { exclude: ["createdAt", "updatedAt"] },
-  });
-  Type = result;
-  //Studio id of This Anime
-  result = await StudioAnime.findAll({ where: { AnimeId: anime.id } });
-  s = result;
-
-  for (let is = 0; is < s.length; is++) {
-    result = await Studio.findOne({
-      where: { id: s[is].StudioId },
-      attributes: { exclude: ["createdAt", "updatedAt"] },
-    });
-
-    Studios.push(result);
-  }
-  //Author id of this Anime
-  result = await AuthorAnime.findAll({ where: { AnimeId: anime.id } });
-  A = result;
-  for (let ia = 0; ia < A.length; ia++) {
-    result = await Author.findOne({
-      where: { id: A[ia].AuthorId },
-      attributes: { exclude: ["createdAt", "updatedAt"] },
-    });
-    Authors.push(result);
-  }
-  //Author id of this Anime
-  result = await GeneresAnime.findAll({ where: { AnimeId: anime.id } });
-  G = result;
-  for (ig = 0; ig < G.length; ig++) {
-    result = await Generes.findOne({
-      where: { id: G[ig].GenereId },
-      attributes: { exclude: ["createdAt", "updatedAt"] },
-    });
-    generes.push(result);
-  }
-  const { title, description, pic, status } = anime;
-  TotalObject = {
-    id,
-    title,
-    description,
-    pic,
-    status,
-    Type,
-    Rate,
-    generes,
-    Authors,
-    Studios,
-  };
-  console.log("Data ", TotalObject);
-  TotalData.push(TotalObject);
-
-  res.json(TotalData);
-});
 router.get("/", async (req, res) => {
   const anime = await Anime.findAll({ order: ["title"] });
 
@@ -212,21 +139,70 @@ router.post("/add", async (req, res) => {
     res.json({ err: "Anime Is Repeated!" });
   }
 });
-router.get("/findall/:id", async (req, res) => {
+router.patch("/update", async (req, res) => {
+  const {
+    id,
+    AuthorId,
+    GenereId,
+    StudioId,
+    RateId,
+    TypeId,
+    status,
+    name,
+    pic,
+    description,
+  } = req.body;
+ {
+    //insert the Data
+    const result = await Anime.update(
+      {
+        RateId,
+        TypeId,
+        status,
+        title: name,
+        pic,
+        description,
+      },
+      { where: { id } }
+    ).then(async (result) => {
+      const AnimeId = id;
+      await GeneresAnime.destroy({ where: { AnimeId } });
+      await AuthorAnime.destroy({ where: { AnimeId } });
+      await StudioAnime.destroy({ where: { AnimeId } });
+
+      for (let i = 0; i < GenereId.length; i++) {
+        GeneresAnime.create({ AnimeId, GenereId: GenereId[i] });
+      }
+      for (let i = 0; i < AuthorId.length; i++) {
+        AuthorAnime.create({ AnimeId, AuthorId: AuthorId[i] });
+      }
+      for (let i = 0; i < StudioId.length; i++) {
+        StudioAnime.create({ AnimeId, StudioId: StudioId[i] });
+      }
+      return result;
+    });
+    if (result) {
+      res.json({ msg: "anime Updated!" });
+    } else {
+      res.json({ err: "anime is Not Updated!" });
+    }
+  } 
+});
+router.get("/find/:id", async (req, res) => {
   const { id } = req.params;
-  const result=await Anime.findAll({
+  const result = await Anime.findOne({
     where: { id },
     attributes: { exclude: ["RateId", "TypeId"] },
     include: [
-      { model: Author,attributes:['id','name'], through: { attributes: [] } },
-      { model: Generes,attributes:['id','Title'], through: { attributes: [] } },
-      { model: Studio,attributes:['id','name'], through: { attributes: [] } },
+      { model: Author, attributes: ["id"], through: { attributes: [] } },
+      { model: Generes, attributes: ["id"], through: { attributes: [] } },
+      { model: Studio, attributes: ["id"], through: { attributes: [] } },
       { model: Rates, attributes: ["id", "title"] },
       { model: Types, attributes: ["id", "name"] },
     ],
     // Including the Author model
-  })
-  res.json(result)  
+  });
+  res.json(result);
 });
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
