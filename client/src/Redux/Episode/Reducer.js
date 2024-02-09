@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 //Action Reducer
 const initialValues = { Data: [], data: {} };
 const EpisodeSlice = createSlice({
-  name: "Count",
+  name: "Episodes",
   initialState: initialValues,
   reducers: {
     fetch: (state, action) => {

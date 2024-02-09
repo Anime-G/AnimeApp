@@ -61,7 +61,7 @@ const Episode = () => {
   const fetchSelectedAnimeEpisodes = async (id) => {
     const data = await axios.get(ApiBase + "/Episodes/" + id);
     dispatch(fetch(data.data));
-    
+
   };
   const handleCancel = () => {
     setVisible(false);
@@ -307,7 +307,75 @@ const Episode = () => {
   // Calculate the start and end index of cards for the current page
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = currentPage * pageSize;
-  const renderCards = () => {};
+  const renderCards = () => {
+    return data.slice(startIndex, endIndex).map((item, index) => (
+      <Card
+        key={index}
+        style={{
+          margin: 20,
+          background: "rgba(255,255,255,.4)",
+          color: "white",
+          width: 300,
+          height: "50px",
+          position: "relative",
+        }}
+        
+        hoverable
+      >
+        <Tooltip
+          placement="bottom"
+          title={item.title }
+        >
+          <Meta
+            title={item.title.toUpperCase()}
+           
+          />
+        </Tooltip>
+        <Button
+          onClick={() => finddata(item.id)}
+          style={{
+            position: "absolute",
+            bottom: 0,
+            width: "50%",
+            left: 0,
+            borderRadius: "0 0 0px 5px",
+          }}
+        >
+          <EditOutlined
+            key="edit"
+            style={{ color: "blue", fontSize: "20px" }}
+          />
+        </Button>
+        <Popconfirm
+          title="Delete the Ad"
+          description="Are you sure to delete this Ad?"
+          // onConfirm={() => deleteAd(item.id)}
+          icon={
+            <QuestionCircleOutlined
+              style={{
+                color: "red",
+              }}
+            />
+          }
+        >
+          <Button
+            style={{
+              position: "absolute",
+              bottom: 0,
+              width: "50%",
+              right: 0,
+              borderRadius: "0 0 5px 0",
+            }}
+          >
+            <DeleteOutlined
+              key="delete"
+              style={{ color: "tomato", fontSize: "20px" }}
+            />
+          </Button>
+        </Popconfirm>
+      </Card>
+    ))
+  };
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -328,7 +396,7 @@ const Episode = () => {
   // };
   useEffect(() => {
     getAnime();
-
+    fetchdata();
     getAnimeEp();
   }, []);
   return (
@@ -350,7 +418,7 @@ const Episode = () => {
           </Button>
         </h1>
         <Select
-          key={animes}
+          
           style={{ width: "200px" }}
           onChange={(id) => {
             fetchSelectedAnimeEpisodes(id);
@@ -365,7 +433,7 @@ const Episode = () => {
           })}
         </Select>
         {/* //pagination */}
-
+          
         <div style={{ textAlign: "right", marginTop: 20 }}>
           <Pagination
             current={currentPage}
@@ -382,87 +450,9 @@ const Episode = () => {
             flexWrap: "wrap",
             justifyContent: "center",
           }}
-          key={data}
-        >
-          {console.log(data)}
-          {data.slice(startIndex, endIndex).map((item, index) => (
-            <Card
-              key={index}
-              style={{
-                margin: 20,
-                background: "rgba(255,255,255,.4)",
-                color: "white",
-                width: 300,
-                height: "300px",
-                position: "relative",
-              }}
-              cover={<Image alt="example" src={item.pic} height={180} />}
-              hoverable
-            >
-              <Tooltip
-                placement="bottom"
-                title={item.title + " : " + item.Description}
-              >
-                <Meta
-                  title={item.title.toUpperCase()}
-                  description={
-                    <div
-                      style={{
-                        maxHeight: "200px",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {item.Description}
-                    </div>
-                  }
-                />
-              </Tooltip>
-              <Button
-                onClick={() => finddata(item.id)}
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  width: "50%",
-                  left: 0,
-                  borderRadius: "0 0 0px 5px",
-                }}
-              >
-                <EditOutlined
-                  key="edit"
-                  style={{ color: "blue", fontSize: "20px" }}
-                />
-              </Button>
-              <Popconfirm
-                title="Delete the Ad"
-                description="Are you sure to delete this Ad?"
-                // onConfirm={() => deleteAd(item.id)}
-                icon={
-                  <QuestionCircleOutlined
-                    style={{
-                      color: "red",
-                    }}
-                  />
-                }
-              >
-                <Button
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    width: "50%",
-                    right: 0,
-                    borderRadius: "0 0 5px 0",
-                  }}
-                >
-                  <DeleteOutlined
-                    key="delete"
-                    style={{ color: "tomato", fontSize: "20px" }}
-                  />
-                </Button>
-              </Popconfirm>
-            </Card>
-          ))}
+          >
+          {console.log("data",data)}
+          {renderCards()}
         </div>
         {AddModal}
       </div>

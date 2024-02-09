@@ -8,7 +8,7 @@ import adsSlice from "./Ads/Reducer";
 import UserpicSlice from "./userpic/Reducer";
 import AnimeSlice from "./Anime/Reducer";
 import CountSlice from "./Count/Reducer";
-import EpisodeSlice from "./Count/Reducer";
+import EpisodeSlice from "./Episode/Reducer";
 // import AuthorReducer from "./Author/Reducer";
 
 const store = configureStore({
