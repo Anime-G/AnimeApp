@@ -34,3 +34,12 @@ code {
 {
   animation: heartbeat infinite 1s ease-in-out;
 }
+.greenpcard
+{
+  background: mediumseagreen;
+  color:white;
+}
+.greenpcard> img
+{
+  box-shadow:0 0 20px white;
+}

@@ -137,11 +137,11 @@ const [formdata]=Form.useForm();
     const result = await axios.post(ApiBase + "/users/login", values);
     if(!result.data.err)
     {
-        const {id,name,emailid,status,token}=result.data;
+        const {id,name,emailid,Userpicurl,status,token}=result.data;
         message.success(result.data.msg);
         localStorage.setItem("accessToken",token);
-
-        setUser({id,name,emailid,status})
+        console.log({id,name,emailid,Userpicurl,status});
+        setUser({id,name,emailid,Userpicurl,status})
         formdata.resetFields();
         navigate('/');
     }
