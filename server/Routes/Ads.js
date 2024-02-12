@@ -1,5 +1,6 @@
 const express = require("express");
-const { Adds } = require("../models");
+const { Adds, sequelize } = require("../models");
+
 const router = express.Router();
 
 router.get('/',async(req,res)=>{
@@ -11,7 +12,10 @@ router.get('/find/:id',async(req,res)=>{
   const result=await Adds.findOne({where:{id:req.params.id}});
   res.json(result);
 })
-
+router.get('/random',async(req,res)=>{
+  const result=await Adds.findOne({order:sequelize.random()});
+  res.json(result);
+})
 router.post("/add", async (req, res) => {
   const { title,pic,Description } = req.body;
   console.log({ title,pic,Description });

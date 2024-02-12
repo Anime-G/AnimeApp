@@ -4,7 +4,7 @@
 import  {  createSlice} from '@reduxjs/toolkit'
 
 //Action Reducer
-const initialValues = {Data:[],data:{}};
+const initialValues = {Data:[],data:[]};
 const AnimeSlice=createSlice({
   name:'Animes',
   initialState:initialValues,
@@ -12,6 +12,9 @@ const AnimeSlice=createSlice({
     
     fetch:(state,action)=>{
       state.Data=action.payload;
+    },
+    diffrent:(state,action)=>{
+      state.data=action.payload;
     },
     default:(state)=>{
       state.Data=[]
@@ -22,5 +25,5 @@ const AnimeSlice=createSlice({
   
 })
 
-export const {fetch}=AnimeSlice.actions;
+export const {fetch,diffrent}=AnimeSlice.actions;
 export default AnimeSlice.reducer;

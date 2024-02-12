@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     Anime.belongsToMany(models.Studio, { through: models.StudioAnime }); 
     Anime.belongsTo(models.Rates); 
     Anime.belongsTo(models.Types); 
+    
 
   }
   return Anime;

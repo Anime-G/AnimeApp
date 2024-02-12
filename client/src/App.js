@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ApiBase } from './Const';
 import { message } from 'antd';
+import Footer from './Components/Footer';
 function App() {
   const [user,setUser]=useState({});
   const [userpic,setUserpic]=useState({});
@@ -25,6 +26,9 @@ function App() {
       pic()
     }
   }
+  document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+  });
   const pic=async()=>{
     if(user.id)
     {//fetch the UserPicId
@@ -49,6 +53,7 @@ function App() {
     <AuthContext.Provider value={{user,setUser,userpic,setUserpic}} >
     <div className="App">
       <Nav/>
+      <Footer/>
     </div>
     </AuthContext.Provider>
   );

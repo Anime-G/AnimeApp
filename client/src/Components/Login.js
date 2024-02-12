@@ -143,7 +143,15 @@ const [formdata]=Form.useForm();
         console.log({id,name,emailid,Userpicurl,status});
         setUser({id,name,emailid,Userpicurl,status})
         formdata.resetFields();
-        navigate('/');
+        if(status==1)
+        {
+        navigate('/Admin/Home');
+
+        }
+        else{
+
+          navigate('/');
+        }
     }
     else{
         message.error(result.data.err)

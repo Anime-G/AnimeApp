@@ -23,8 +23,10 @@ import Ads from "./Admin/Ads";
 import Page404 from "./Page404";
 import Profile from "./Profile";
 import Userpic from "./Admin/Userpic";
+import {default as Chome}  from './Home';
 import axios from "axios";
 import { ApiBase } from "../Const";
+import WatchAnime from "./WatchAnime";
 const Nav = () => {
   const { user, setUser,userpic} = useContext(AuthContext);
   const [data,setData]=useState([]);
@@ -53,7 +55,7 @@ const Nav = () => {
   } else {
     items.push({
       label: (
-        <span style={{ display: "flex", gap: "10px" }}>
+        <span style={{ display: "flex", gap: "10px",paddingTop:5 }}>
           <img 
             src={userpic}
             height="40px"
@@ -113,6 +115,14 @@ const Nav = () => {
         }
       );
     }
+    else{
+      items.push(
+        {
+          label: <Link to="/">Home</Link>,
+          key: "Home",
+          icon: <HomeOutlined />,
+        })
+    }
 
    
   }
@@ -123,17 +133,21 @@ const Nav = () => {
   return (
     <>
       <Menu
+        key={items}
         theme="dark"
-        style={{ position: "sticky", top: 0, zIndex: 120 }}
+        style={{ position: "sticky",height:"50px", top: 0, zIndex: 120, }}
         onClick={onClick}
         selectedKeys={[current]}
+        // defaultSelectedKeys={[this.props.location.pathname]}
         mode="horizontal"
         items={items}
       />
       {/* Routes */}
       <Routes>
-        <Route path='/' element={<Home/>} />
+        <Route path='/' element={<Chome/>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Anime/:id" element={<WatchAnime />} />
+        <Route path="/Anime/:id/:Epi" element={<WatchAnime />} />
         {user.id ? <Route path="/profile" element={<Profile />} /> : ""}
 
         {user.status === 1 ? (
@@ -146,9 +160,7 @@ const Nav = () => {
             <Route path="/admin/ads" element={<Ads />} />
             <Route path="/admin/userpic" element={<Userpic />} />
           </>
-        ) : (
-          ""
-        )}
+        ) : ("")}
         <Route path="*" element={<Page404 />} />
       </Routes>
     </>

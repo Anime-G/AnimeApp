@@ -10,6 +10,7 @@ import {
   Card,
   Image,
 } from "antd";
+import _ from 'lodash'
 import { EditOutlined } from "@ant-design/icons";
 import { AuthContext } from "../Helper/AuthContext";
 import axios from "axios";
@@ -122,6 +123,9 @@ const Profile = () => {
         if (result.data.msg) {
           setVisible3(false);
           message.success(result.data.msg);
+          
+          
+          setUserpic("")
         } else {
           message.error(result.data.err);
         }
@@ -134,7 +138,7 @@ const Profile = () => {
     if (result) {
       if (result.data.msg) {
       setVisible3(false);
-
+      setUserpic("")
         message.success(result.data.msg);
       } else {
         message.error(result.data.err);
@@ -255,7 +259,7 @@ const Profile = () => {
   );
   const modal3 = (
     <Modal
-      title="Update Profile Pic"
+      title={`Update Profile Pic ( `+ ups.length +` )`  }
       open={visible3}
       onCancel={handleCancel3}
       footer={null}
@@ -306,11 +310,13 @@ const Profile = () => {
                   >
                     <img
                       src={up.pic}
+                      
                       style={{
                         margin: "15px auto",
                         borderRadius: "50%",
                         width: "150px",
                         height: "150px",
+                        
                       }}
                     />
                     <br />
@@ -322,16 +328,16 @@ const Profile = () => {
           </Row>
         </div>
         <Row gutter={24} style={{ marginTop: 20 }}>
-          <Col offset={18} span={2}>
+          <Col offset={17} span={3}>
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                Submit
+                Set profile Pic
               </Button>
             </Form.Item>
           </Col>
           <Col span={2}>
             <Form.Item>
-              <Button type="primary" onClick={()=>Removepic()}>Remove the Pic</Button>
+              <Button type="primary" danger onClick={()=>Removepic()}>Remove the Pic</Button>
             </Form.Item>
           </Col>
         </Row>

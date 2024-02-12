@@ -12,7 +12,8 @@ const {
   Episode,
   sequelize
 } = require("../models");
-const _ =require('lodash')
+const _ =require('lodash');
+const { Op } = require("sequelize");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -216,6 +217,46 @@ router.delete("/delete/:id", async (req, res) => {
     res.json({ err: "Anime is not Deleted!" });
   }
 });
+router.get("/top/:limit",async(req,res)=>{
+  const limit=req.params.limit;
+  console.log(limit);
+  const result = await Anime.findAll({
+    
+    attributes: { exclude: ["RateId", "TypeId"] },
+    include: [
+      { model: Author, attributes: ["name"], through: { attributes: [] } },
+      { model: Generes, attributes: ["Title"], through: { attributes: [] } },
+      { model: Studio, attributes: ["name"], through: { attributes: [] } },
+      { model: Episode,attributes:['id']},
+      { model: Rates, attributes: [ "title","Description"] },
+      { model: Types, attributes: ["name"] },
+    ],
+    limit:parseInt(limit),
+    // Including the Author model
+  });
+  
+  res.json(result);
+})
+router.post("/Animescards",async(req,res)=>{
+  const id=req.body.id;
+  console.log(id);
+  const result = await Anime.findAll({
+    where:{id:{[Op.notIn]:id}},
+    attributes: { exclude: ["RateId", "TypeId"] },
+    include: [
+      { model: Author, attributes: ["name"], through: { attributes: [] } },
+      { model: Generes, attributes: ["Title"], through: { attributes: [] } },
+      { model: Studio, attributes: ["name"], through: { attributes: [] } },
+      { model: Episode,attributes:['id']},
+      { model: Rates, attributes: [ "title","Description"] },
+      { model: Types, attributes: ["name"] },
+    ],
+    limit:25,
+    // Including the Author model
+  });
+  
+  res.json(result);
+})
 //get Only those Anime which have the Episodes
 router.get("/getAnimeWithEps",async(req,res)=>{
   const result=await Episode.findAll({ attributes:  [[sequelize.fn('DISTINCT', sequelize.col('AnimeId')), 'AnimeId']]})
@@ -225,5 +266,27 @@ router.get("/getAnimeWithEps",async(req,res)=>{
   });
   const Animedata=await Anime.findAll({where:{id:AnimeId},attributes:['id','title']});
   res.json(Animedata)
+})
+
+router.get("/GetDataAnime/:id",async(req,res)=>{
+  
+  const id=req.params.id;
+  console.log(id);
+  const result = await Anime.findAll({
+    where:{id},
+    attributes: { exclude: ["RateId", "TypeId"] },
+    include: [
+      { model: Author, attributes: ["name"], through: { attributes: [] } },
+      { model: Generes, attributes: ["Title"], through: { attributes: [] } },
+      { model: Studio, attributes: ["name"], through: { attributes: [] } },
+      { model: Episode,order:['createdAt']},
+      { model: Rates, attributes: [ "title","Description"] },
+      { model: Types, attributes: ["name"] },
+    ],
+    limit:25,
+    // Including the Author model
+  });
+  
+  res.json(result);
 })
 module.exports = router;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 07, 2024 at 12:44 PM
+-- Generation Time: Feb 12, 2024 at 01:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,21 +66,23 @@ CREATE TABLE `Animes` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `RateId` int(11) DEFAULT NULL,
-  `TypeId` int(11) DEFAULT NULL
+  `TypeId` int(11) DEFAULT NULL,
+  `EpisodeId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Animes`
 --
 
-INSERT INTO `Animes` (`id`, `title`, `description`, `pic`, `status`, `createdAt`, `updatedAt`, `RateId`, `TypeId`) VALUES
-(3, 'one piece', '\"One Piece\" is an epic manga series by Eiichiro Oda, chronicling the adventures of Monkey D. Luffy and his crew as they search for the legendary treasure, One Piece, to become the PiRate King. Filled with vibrant characters, intense battles, and intricate storytelling, the series takes readers on a journey through a vast world of oceans and islands. Luffy, armed with his rubber-like abilities, leads the Straw Hat PiRates on a quest filled with friendship, determination, and the pursuit of dreams, captivating audiences globally for over two decades.', 'https://i.pinimg.com/736x/10/8e/3b/108e3b1df00743bb3ce908a48c8e7e47.jpg', 0, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 1),
-(4, 'dragon ball', '\"Dragon Ball\" is a classic Japanese manga and anime series created by Akira Toriyama. It follows the adventures of Goku, a young and adventurous boy with incredible martial arts skills and a monkey tail, as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, Goku encounters a diverse cast of characters, including the powerful Saiyan prince Vegeta, the wise martial arts master Master Roshi, and the loyal friends he makes during his travels. Filled with thrilling battles, humorous moments, and epic quests, \"Dragon Ball\" has become a beloved franchise worldwide, inspiring numerous spin-offs, movies, and video games.', 'https://i.pinimg.com/564x/04/1e/39/041e39121d129beb6a3423688e8eb03e.jpg', 1, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 3, 1),
-(5, 'naruto', '\"Naruto\" is a Japanese manga and anime series created by Masashi Kishimoto. It tells the story of Naruto Uzumaki, a young ninja with dreams of becoming the strongest ninja and the leader of his village, known as the Hokage. Born with a powerful fox spirit sealed within him, Naruto faces prejudice and loneliness but strives to prove himself to his peers and earn their respect. Alongside his friends and fellow ninjas, including Sasuke Uchiha and Sakura Haruno, Naruto embarks on various missions and battles against powerful foes while uncovering the truth about his past and the world around him. With its themes of friendship, perseverance, and redemption, \"Naruto\" has captured the hearts of fans worldwide and has become one of the most popular anime and manga franchises of all time.', 'https://i.pinimg.com/564x/d7/be/b3/d7beb32a2ac6f8c8df1b7adbe6a1da75.jpg', 1, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 3, 1),
-(6, 'naruto shippuden', '\"Naruto Shippuden\" is the continuation of the original \"Naruto\" series, created by Masashi Kishimoto. Set several years after the events of the original series, it follows Naruto Uzumaki and his friends as they embark on a new set of adventures and face even greater challenges. With Sasuke Uchiha\'s defection to the villainous organization Akatsuki, Naruto\'s quest to bring him back becomes central to the story. Alongside his comrades, Naruto trains diligently to become stronger and protect his village from looming threats, including the malevolent figure known as Pain. \"Naruto Shippuden\" delves deeper into the characters\' backstories, relationships, and the complexities of the ninja world, offering a more mature and nuanced narrative while retaining the series\' trademark action and humor.', 'https://i.pinimg.com/564x/5d/5e/eb/5d5eeb960c8553db6fccaa30685b6f12.jpg', 1, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 3, 1),
-(7, 'bleach', '\"Bleach\" is a Japanese manga and anime series created by Tite Kubo. It follows the story of Ichigo Kurosaki, a teenager with the ability to see ghosts. After inadvertently obtaining the powers of a Soul Reaper—a spiritual being tasked with guiding souls to the afterlife—Ichigo finds himself thrust into the world of the Soul Society, where he must battle evil spirits known as Hollows and protect both the living and the dead. Alongside his friends, including the fiery-tempered Soul Reaper Rukia Kuchiki and the quirky spirit medium Orihime Inoue, Ichigo faces increasingly powerful foes and uncovers dark conspiracies that threaten the balance between the human world and the afterlife. With its blend of action-packed battles, supernatural elements, and intricate world-building, \"Bleach\" has garnered a dedicated fanbase worldwide.', 'https://i.pinimg.com/564x/73/3d/1b/733d1bdb2a589da8563016253232b586.jpg', 1, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 3, 1),
-(8, 'bleach: thousand-year blood war', '\"Bleach: Thousand-Year Blood War\" is an arc within the \"Bleach\" manga series, created by Tite Kubo. This arc follows the climactic battle between the Soul Society and the Wandenreich, a powerful organization of Quincy led by Yhwach. As Yhwach and his forces launch a full-scale invasion of the Soul Society, Ichigo Kurosaki and his allies must rally together to defend their world against this formidable threat. The arc delves into the history of the Quincy, Ichigo\'s own lineage, and the true nature of the Soul King, culminating in epic battles and shocking revelations that reshape the fate of the Bleach universe. With its intense action, complex characters, and high-stakes storytelling, the Thousand-Year Blood War arc is a thrilling conclusion to the Bleach manga series.', 'https://i.pinimg.com/564x/c4/d8/56/c4d85662d571d18c31437e2fe0b2c9ea.jpg', 1, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 3, 1),
-(9, 'god of high school', '\"God of High School\" is a South Korean webtoon series created by Yongje Park, which has also been adapted into a popular anime. The story centers around Jin Mori, a high school student and skilled martial artist who enters the God of High School tournament, a competition where participants from all over the country battle it out using their martial arts skills. As the tournament progresses, Jin Mori encounters formidable opponents, forges new friendships, and uncovers the mysteries surrounding the tournament\'s true purpose. Alongside his friends, including the swordswoman Yu Mira and the hand-to-hand fighter Han Daewi, Jin Mori faces increasingly powerful adversaries and confronts his own past. With its dynamic fight scenes, supernatural elements, and themes of friendship and self-discovery, \"God of High School\" has captivated audiences with its fast-paced action and compelling characters.m', 'https://i.pinimg.com/564x/dc/a5/94/dca59487be9687615d1a3e0fd78105b6.jpg', 1, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 3, 1);
+INSERT INTO `Animes` (`id`, `title`, `description`, `pic`, `status`, `createdAt`, `updatedAt`, `RateId`, `TypeId`, `EpisodeId`) VALUES
+(3, 'one piece', '\"One Piece\" is an epic manga series by Eiichiro Oda, chronicling the adventures of Monkey D. Luffy and his crew as they search for the legendary treasure, One Piece, to become the PiRate King. Filled with vibrant characters, intense battles, and intricate storytelling, the series takes readers on a journey through a vast world of oceans and islands. Luffy, armed with his rubber-like abilities, leads the Straw Hat PiRates on a quest filled with friendship, determination, and the pursuit of dreams, captivating audiences globally for over two decades.', 'https://i.pinimg.com/736x/10/8e/3b/108e3b1df00743bb3ce908a48c8e7e47.jpg', 0, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 1, NULL),
+(4, 'dragon ball', '\"Dragon Ball\" is a classic Japanese manga and anime series created by Akira Toriyama. It follows the adventures of Goku, a young and adventurous boy with incredible martial arts skills and a monkey tail, as he embarks on a journey to collect the seven mystical Dragon Balls. Along the way, Goku encounters a diverse cast of characters, including the powerful Saiyan prince Vegeta, the wise martial arts master Master Roshi, and the loyal friends he makes during his travels. Filled with thrilling battles, humorous moments, and epic quests, \"Dragon Ball\" has become a beloved franchise worldwide, inspiring numerous spin-offs, movies, and video games.', 'https://i.pinimg.com/736x/29/c4/08/29c408b05d327d85ad4a7e5fbff992b6.jpg', 1, '2024-02-06 17:18:26', '2024-02-08 07:25:14', 3, 1, NULL),
+(5, 'naruto', '\"Naruto\" is a Japanese manga and anime series created by Masashi Kishimoto. It tells the story of Naruto Uzumaki, a young ninja with dreams of becoming the strongest ninja and the leader of his village, known as the Hokage. Born with a powerful fox spirit sealed within him, Naruto faces prejudice and loneliness but strives to prove himself to his peers and earn their respect. Alongside his friends and fellow ninjas, including Sasuke Uchiha and Sakura Haruno, Naruto embarks on various missions and battles against powerful foes while uncovering the truth about his past and the world around him. With its themes of friendship, perseverance, and redemption, \"Naruto\" has captured the hearts of fans worldwide and has become one of the most popular anime and manga franchises of all time.', 'https://i.pinimg.com/564x/d7/be/b3/d7beb32a2ac6f8c8df1b7adbe6a1da75.jpg', 1, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 3, 1, NULL),
+(6, 'naruto shippuden', '\"Naruto Shippuden\" is the continuation of the original \"Naruto\" series, created by Masashi Kishimoto. Set several years after the events of the original series, it follows Naruto Uzumaki and his friends as they embark on a new set of adventures and face even greater challenges. With Sasuke Uchiha\'s defection to the villainous organization Akatsuki, Naruto\'s quest to bring him back becomes central to the story. Alongside his comrades, Naruto trains diligently to become stronger and protect his village from looming threats, including the malevolent figure known as Pain. \"Naruto Shippuden\" delves deeper into the characters\' backstories, relationships, and the complexities of the ninja world, offering a more mature and nuanced narrative while retaining the series\' trademark action and humor.', 'https://i.pinimg.com/564x/5d/5e/eb/5d5eeb960c8553db6fccaa30685b6f12.jpg', 1, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 3, 1, NULL),
+(7, 'bleach', '\"Bleach\" is a Japanese manga and anime series created by Tite Kubo. It follows the story of Ichigo Kurosaki, a teenager with the ability to see ghosts. After inadvertently obtaining the powers of a Soul Reaper—a spiritual being tasked with guiding souls to the afterlife—Ichigo finds himself thrust into the world of the Soul Society, where he must battle evil spirits known as Hollows and protect both the living and the dead. Alongside his friends, including the fiery-tempered Soul Reaper Rukia Kuchiki and the quirky spirit medium Orihime Inoue, Ichigo faces increasingly powerful foes and uncovers dark conspiracies that threaten the balance between the human world and the afterlife. With its blend of action-packed battles, supernatural elements, and intricate world-building, \"Bleach\" has garnered a dedicated fanbase worldwide.', 'https://i.pinimg.com/564x/73/3d/1b/733d1bdb2a589da8563016253232b586.jpg', 1, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 3, 1, NULL),
+(8, 'bleach: thousand-year blood war', '\"Bleach: Thousand-Year Blood War\" is an arc within the \"Bleach\" manga series, created by Tite Kubo. This arc follows the climactic battle between the Soul Society and the Wandenreich, a powerful organization of Quincy led by Yhwach. As Yhwach and his forces launch a full-scale invasion of the Soul Society, Ichigo Kurosaki and his allies must rally together to defend their world against this formidable threat. The arc delves into the history of the Quincy, Ichigo\'s own lineage, and the true nature of the Soul King, culminating in epic battles and shocking revelations that reshape the fate of the Bleach universe. With its intense action, complex characters, and high-stakes storytelling, the Thousand-Year Blood War arc is a thrilling conclusion to the Bleach manga series.', 'https://i.pinimg.com/564x/c4/d8/56/c4d85662d571d18c31437e2fe0b2c9ea.jpg', 1, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 3, 1, NULL),
+(9, 'god of high school', '\"God of High School\" is a South Korean webtoon series created by Yongje Park, which has also been adapted into a popular anime. The story centers around Jin Mori, a high school student and skilled martial artist who enters the God of High School tournament, a competition where participants from all over the country battle it out using their martial arts skills. As the tournament progresses, Jin Mori encounters formidable opponents, forges new friendships, and uncovers the mysteries surrounding the tournament\'s true purpose. Alongside his friends, including the swordswoman Yu Mira and the hand-to-hand fighter Han Daewi, Jin Mori faces increasingly powerful adversaries and confronts his own past. With its dynamic fight scenes, supernatural elements, and themes of friendship and self-discovery, \"God of High School\" has captivated audiences with its fast-paced action and compelling characters.m', 'https://i.pinimg.com/564x/dc/a5/94/dca59487be9687615d1a3e0fd78105b6.jpg', 1, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 3, 1, NULL),
+(12, 'solo leveling', '\"Solo Leveling\" is a South Korean web novel series written by Chu-Gong. It follows the story of Sung Jin-Woo, an E-rank hunter in a world where gates to dungeons full of monsters have emerged, endangering humanity. After a near-death experience, Jin-Woo gains the ability to see quests, level up, and grow stronger. He embarks on a journey to become the most powerful hunter, known as a \"solo leveler.\" The series is known for its intense action, intricate plot, and dynamic character development. It has gained significant popularity both in South Korea and internationally, with a webtoon adaptation and a dedicated fanbase.', 'https://i.pinimg.com/564x/0f/22/0f/0f220f8cd8c8613fafbdf6ee7582c835.jpg', 0, '2024-02-08 05:01:26', '2024-02-08 06:54:13', 3, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,7 +91,6 @@ INSERT INTO `Animes` (`id`, `title`, `description`, `pic`, `status`, `createdAt`
 --
 
 CREATE TABLE `AuthorAnimes` (
-  `id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `AnimeId` int(11) DEFAULT NULL,
@@ -100,14 +101,15 @@ CREATE TABLE `AuthorAnimes` (
 -- Dumping data for table `AuthorAnimes`
 --
 
-INSERT INTO `AuthorAnimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `AuthorId`) VALUES
-(3, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 36),
-(4, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 6),
-(5, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 7),
-(6, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 7),
-(7, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 8),
-(8, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 8),
-(9, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 38);
+INSERT INTO `AuthorAnimes` (`createdAt`, `updatedAt`, `AnimeId`, `AuthorId`) VALUES
+('2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 36),
+('2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 7),
+('2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 7),
+('2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 8),
+('2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 8),
+('2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 38),
+('2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 39),
+('2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 6);
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,8 @@ INSERT INTO `Authors` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (9, 'tsugumi ohba', '2024-01-30 06:24:42', '2024-01-30 06:24:42'),
 (36, 'eiichiro oda', '2024-02-06 11:41:48', '2024-02-06 11:41:48'),
 (37, 'yuzuru tachikawa', '2024-02-06 11:47:22', '2024-02-06 11:47:22'),
-(38, 'yongje park', '2024-02-06 17:51:15', '2024-02-06 17:51:15');
+(38, 'yongje park', '2024-02-06 17:51:15', '2024-02-06 17:51:15'),
+(39, 'chu-gong', '2024-02-08 06:46:00', '2024-02-08 06:46:00');
 
 -- --------------------------------------------------------
 
@@ -143,12 +146,24 @@ INSERT INTO `Authors` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 
 CREATE TABLE `Episodes` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `url` varchar(1000) DEFAULT NULL,
   `Epno` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `AnimeId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Episodes`
+--
+
+INSERT INTO `Episodes` (`id`, `title`, `url`, `Epno`, `createdAt`, `updatedAt`, `AnimeId`) VALUES
+(1, 'start the war', 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3', '1', '2024-02-08 11:06:02', '2024-02-08 11:06:02', 7),
+(2, 'start the war', 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3', '1', '2024-02-08 11:06:20', '2024-02-08 11:06:20', 5),
+(3, 'gain substitute soul reaper powers', 'https://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/thrust.mp3', '2', '2024-02-08 11:07:33', '2024-02-09 06:33:29', 7),
+(4, 'the new begining!', 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/win.ogg', '1', '2024-02-08 11:08:00', '2024-02-08 11:08:00', 4),
+(5, 'friendly meet up', 'https://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/soundtrack.ogg', '2', '2024-02-08 11:08:33', '2024-02-08 11:08:33', 4);
 
 -- --------------------------------------------------------
 
@@ -184,7 +199,8 @@ INSERT INTO `Generes` (`id`, `Title`, `createdAt`, `updatedAt`) VALUES
 (14, 'harem', '2024-02-05 07:37:58', '2024-02-05 07:37:58'),
 (15, 'historical', '2024-02-05 07:38:04', '2024-02-05 07:38:04'),
 (16, 'post-apocalyptic', '2024-02-05 07:38:15', '2024-02-05 07:38:15'),
-(19, 'martial arts', '2024-02-06 17:50:59', '2024-02-06 17:50:59');
+(19, 'martial arts', '2024-02-06 17:50:59', '2024-02-06 17:50:59'),
+(20, 'game element', '2024-02-08 06:47:33', '2024-02-08 06:47:33');
 
 -- --------------------------------------------------------
 
@@ -211,11 +227,6 @@ INSERT INTO `GeneresAnimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `GenereI
 (16, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 7),
 (17, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 8),
 (18, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 4),
-(19, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 4),
-(20, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 1),
-(21, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 10),
-(22, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 8),
-(23, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 11),
 (24, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 1),
 (25, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 10),
 (26, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 8),
@@ -230,7 +241,18 @@ INSERT INTO `GeneresAnimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `GenereI
 (39, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 11),
 (40, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 19),
 (41, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 1),
-(42, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 11);
+(42, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 11),
+(62, '2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 1),
+(63, '2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 4),
+(64, '2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 8),
+(65, '2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 20),
+(66, '2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 10),
+(67, '2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 6),
+(78, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 1),
+(79, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 10),
+(80, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 4),
+(81, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 8),
+(82, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 11);
 
 -- --------------------------------------------------------
 
@@ -277,12 +299,13 @@ CREATE TABLE `StudioAnimes` (
 
 INSERT INTO `StudioAnimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `StudioId`) VALUES
 (3, '2024-02-06 17:01:19', '2024-02-06 17:01:19', 3, 2),
-(4, '2024-02-06 17:18:26', '2024-02-06 17:18:26', 4, 2),
 (5, '2024-02-06 17:24:46', '2024-02-06 17:24:46', 5, 7),
 (6, '2024-02-06 17:32:02', '2024-02-06 17:32:02', 6, 7),
 (7, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 7, 7),
 (8, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 7),
-(9, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 6);
+(9, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 6),
+(16, '2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 12),
+(19, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -309,7 +332,8 @@ INSERT INTO `Studios` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (6, 'mappa', '2024-02-05 06:24:38', '2024-02-05 06:24:38'),
 (7, 'Studio pierrot', '2024-02-05 06:24:51', '2024-02-05 06:24:51'),
 (8, 'white fox', '2024-02-05 06:25:10', '2024-02-05 06:25:10'),
-(11, 'sunrise inc.', '2024-02-06 12:01:31', '2024-02-06 12:01:31');
+(11, 'sunrise inc.', '2024-02-06 12:01:31', '2024-02-06 12:01:31'),
+(12, 'a-1 pictures', '2024-02-08 06:46:54', '2024-02-08 06:46:54');
 
 -- --------------------------------------------------------
 
@@ -370,7 +394,8 @@ INSERT INTO `Userpics` (`id`, `name`, `pic`, `createdAt`, `updatedAt`) VALUES
 (20, 'itachi', 'https://i.pinimg.com/564x/2f/be/a2/2fbea2e9c1b834f7e7f934ff519ee4db.jpg', '2024-02-06 09:29:18', '2024-02-06 09:29:18'),
 (21, 'sasuke', 'https://i.pinimg.com/564x/b1/e9/9e/b1e99ec094df93091b34389aa67db8ec.jpg', '2024-02-06 09:33:26', '2024-02-06 09:33:26'),
 (22, 'toshiro', 'https://i.pinimg.com/564x/17/49/4c/17494c6ce0b61d76c2aea6abf73334bb.jpg', '2024-02-06 09:42:29', '2024-02-06 09:42:29'),
-(23, 'ichigo', 'https://i.pinimg.com/564x/ab/5f/c8/ab5fc8e5c6f5a305c81f16a7b465c302.jpg', '2024-02-06 09:42:49', '2024-02-06 09:42:49');
+(23, 'ichigo', 'https://i.pinimg.com/564x/ab/5f/c8/ab5fc8e5c6f5a305c81f16a7b465c302.jpg', '2024-02-06 09:42:49', '2024-02-06 09:42:49'),
+(24, 'toji fushiguro', 'https://i.pinimg.com/564x/18/d6/35/18d635c39ce7f4cf184c437c6598eafb.jpg', '2024-02-08 07:18:37', '2024-02-08 07:18:58');
 
 -- --------------------------------------------------------
 
@@ -385,16 +410,17 @@ CREATE TABLE `Users` (
   `password` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT 0,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
+  `updatedAt` datetime NOT NULL,
+  `UserpicId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, 'Son-goku', 'goku@gmail.com', '$2b$10$Jsuyl7st20yse6EtwqU72eDwyHBKzzPeRsxYaDbaMFFc39tAn29QC', 1, '2024-01-29 10:40:16', '2024-01-29 10:40:16'),
-(2, 'vegeta', 'vegeta@gmail.com', '$2b$10$NEsa./y4Y7/MYph6W49qSOgkqKtUtMT.klJh2kNe4VDqOpD4bqBTW', 0, '2024-01-29 10:42:59', '2024-01-29 10:42:59');
+INSERT INTO `Users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`, `updatedAt`, `UserpicId`) VALUES
+(1, 'son-goku', 'goku@san.com', '$2b$10$GRiTsOVZHDdeSPQvnKhwXOg9XTS2vomavX8NwDQGJUjbhUeGXjoFO', 1, '2024-02-08 07:19:35', '2024-02-12 04:33:15', 7),
+(2, 'prince-vegeta', 'vegeta@gmail.com', '$2b$10$FzwPpoxwMQeTp5YxKl.Vqe5/B8GGpz1nOo3rbYqrJrGvtcjzMMrwm', 0, '2024-02-08 07:21:01', '2024-02-12 07:20:50', 3);
 
 --
 -- Indexes for dumped tables
@@ -405,7 +431,10 @@ INSERT INTO `Users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`,
 --
 ALTER TABLE `Adds`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Description` (`Description`);
+  ADD UNIQUE KEY `Description` (`Description`),
+  ADD UNIQUE KEY `Description_2` (`Description`),
+  ADD UNIQUE KEY `Description_3` (`Description`),
+  ADD UNIQUE KEY `Description_4` (`Description`);
 
 --
 -- Indexes for table `Animes`
@@ -413,14 +442,17 @@ ALTER TABLE `Adds`
 ALTER TABLE `Animes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `description` (`description`) USING HASH,
+  ADD UNIQUE KEY `description_2` (`description`) USING HASH,
+  ADD UNIQUE KEY `description_3` (`description`) USING HASH,
+  ADD UNIQUE KEY `description_4` (`description`) USING HASH,
   ADD KEY `RateId` (`RateId`),
-  ADD KEY `TypeId` (`TypeId`);
+  ADD KEY `TypeId` (`TypeId`),
+  ADD KEY `EpisodeId` (`EpisodeId`);
 
 --
 -- Indexes for table `AuthorAnimes`
 --
 ALTER TABLE `AuthorAnimes`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `AnimeId` (`AnimeId`),
   ADD KEY `AuthorId` (`AuthorId`);
 
@@ -435,7 +467,6 @@ ALTER TABLE `Authors`
 --
 ALTER TABLE `Episodes`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Epno` (`Epno`),
   ADD KEY `AnimeId` (`AnimeId`);
 
 --
@@ -490,7 +521,8 @@ ALTER TABLE `Userpics`
 --
 ALTER TABLE `Users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `emailid` (`emailid`);
+  ADD UNIQUE KEY `emailid` (`emailid`),
+  ADD KEY `UserpicId` (`UserpicId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -506,37 +538,31 @@ ALTER TABLE `Adds`
 -- AUTO_INCREMENT for table `Animes`
 --
 ALTER TABLE `Animes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `AuthorAnimes`
---
-ALTER TABLE `AuthorAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `Authors`
 --
 ALTER TABLE `Authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `Episodes`
 --
 ALTER TABLE `Episodes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `Generes`
 --
 ALTER TABLE `Generes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `GeneresAnimes`
 --
 ALTER TABLE `GeneresAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `Rates`
@@ -548,13 +574,13 @@ ALTER TABLE `Rates`
 -- AUTO_INCREMENT for table `StudioAnimes`
 --
 ALTER TABLE `StudioAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `Studios`
 --
 ALTER TABLE `Studios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `Types`
@@ -566,13 +592,13 @@ ALTER TABLE `Types`
 -- AUTO_INCREMENT for table `Userpics`
 --
 ALTER TABLE `Userpics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -582,8 +608,9 @@ ALTER TABLE `Users`
 -- Constraints for table `Animes`
 --
 ALTER TABLE `Animes`
-  ADD CONSTRAINT `Animes_ibfk_1` FOREIGN KEY (`RateId`) REFERENCES `Rates` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Animes_ibfk_2` FOREIGN KEY (`TypeId`) REFERENCES `Types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Animes_ibfk_7` FOREIGN KEY (`RateId`) REFERENCES `Rates` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `Animes_ibfk_8` FOREIGN KEY (`TypeId`) REFERENCES `Types` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `Animes_ibfk_9` FOREIGN KEY (`EpisodeId`) REFERENCES `Episodes` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `AuthorAnimes`
@@ -611,6 +638,12 @@ ALTER TABLE `GeneresAnimes`
 ALTER TABLE `StudioAnimes`
   ADD CONSTRAINT `StudioAnimes_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `Animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `StudioAnimes_ibfk_2` FOREIGN KEY (`StudioId`) REFERENCES `Studios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Users`
+--
+ALTER TABLE `Users`
+  ADD CONSTRAINT `Users_ibfk_1` FOREIGN KEY (`UserpicId`) REFERENCES `Userpics` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

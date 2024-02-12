@@ -24,7 +24,7 @@ const Home = () => {
         <Row gutter={16} key={Count}>
           {Object.keys(Count).map(key =>  (
             
-            <Col span={6} >
+            <Col span={6} key={key} >
               <Card bordered={false} style={{margin:"20px",background:"pink"}}>
                 <Statistic title={key} value={Count[key]} />
               </Card>
