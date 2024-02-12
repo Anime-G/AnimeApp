@@ -19,7 +19,10 @@ router.get("/find/:id", async (req, res) => {
   const result = await Episode.findOne({ where: { id: req.params.id } });
   res.json(result);
 });
-
+router.get("/findbyAnimeId/:id", async (req, res) => {
+  const result = await Episode.findOne({ where: { AnimeId: req.params.id },order:['createdAt'] });
+  res.json(result);
+});
 router.post("/add", async (req, res) => {
   const { title, url, AnimeId, Epno } = req.body;
   console.log({ title, url, AnimeId, Epno });

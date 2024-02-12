@@ -76,3 +76,15 @@ code {
   box-shadow:0 0 50px rgba(0,0,0,.8);
   transition: all ease-in-out .4s;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: right;
+  height: 100vh;
+}
+
+.container img {
+  width: fit-content;
+  height: 100%;
+  
+} 
