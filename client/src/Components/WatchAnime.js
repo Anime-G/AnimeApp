@@ -74,6 +74,19 @@ const WatchAnime = () => {
       
       }
     }
+    const countSixSeconds = () => {
+      let seconds = 0;
+    
+      const timer = setInterval(() => {
+        seconds++;
+        console.log(seconds);
+    
+        if (seconds >= 6) {
+          clearInterval(timer);
+          console.log("Six seconds have passed!");
+        }
+      }, 1000);
+    };
     const fetchdata = () => {
       fetchAdddata();
       fetchAnimedata();
