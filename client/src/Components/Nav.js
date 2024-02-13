@@ -29,6 +29,7 @@ import axios from "axios";
 import { ApiBase } from "../Const";
 import WatchAnime from "./WatchAnime";
 import Search from "./Search";
+import Watchlist from "./Watchlist";
 const Nav = () => {
   const { user, setUser,userpic} = useContext(AuthContext);
   const [data,setData]=useState([]);
@@ -72,6 +73,11 @@ const Nav = () => {
         {
           label: <Link to="/profile">Profile</Link>,
           key: "profile",
+          icon: <ProfileOutlined />,
+        },
+        !user.status &&{
+          label: <Link to="/watchlist">Watchlist</Link>,
+          key: "Watchlist",
           icon: <ProfileOutlined />,
         },
         {
@@ -157,7 +163,7 @@ const Nav = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/Anime/:id" element={<WatchAnime />} />
         <Route path="/Anime/:id/:Epi" element={<WatchAnime />} />
-        {user.id ? <Route path="/profile" element={<Profile />} /> : ""}
+        {user.id ? (<><Route path="/profile" element={<Profile />} />{!user.status && <Route path="/watchlist" element={<Watchlist/>} />}</>) : ""}
 
         {user.status === 1 ? (
           <>

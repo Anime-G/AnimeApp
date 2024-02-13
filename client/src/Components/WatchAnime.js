@@ -8,18 +8,21 @@ import {
   Row,
   Tag,
   Tooltip,
+  message,
 } from "antd";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ApiBase } from "../Const";
+import { ApiBase} from "../Const";
 import { useDispatch, useSelector } from "react-redux";
 import { fetch as Animefetch, diffrent } from "../Redux/Anime/Reducer";
 
-import { VideoCameraAddOutlined } from "@ant-design/icons";
+import { CheckOutlined, PlusSquareOutlined, VideoCameraAddOutlined } from "@ant-design/icons";
 import _ from "lodash";
+import { AuthContext } from "../Helper/AuthContext";
 
 const WatchAnime = () => {
+  const {user}=useContext(AuthContext);
   const [Add, setAdd] = useState({});
   const Anime = useSelector((state) => state.Animes.Data);
   const OtherAnime = useSelector((state) => state.Animes.data);
@@ -32,6 +35,7 @@ const WatchAnime = () => {
   const [Ep, setEpi] = useState();
   const [seconds, setSeconds] = useState(6);
   const [showDiv, setShowDiv] = useState(true);
+  const [watchstatus,setWatchstatus]=useState(0);
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -71,16 +75,56 @@ const WatchAnime = () => {
       });
     }
   };
-
+  const findwathclist=async()=>{
+    // console.log(user);
+    const data = await axios.post(ApiBase + "/Watchlists/find/", {
+      AnimeId: id,
+     UserId:user.id,
+    });
+    setWatchstatus(data.data);
+  }
   const fetchdata = () => {
     
     fetchAdddata();
     fetchAnimedata();
     fetchOtherList();
     setEp();
+    if(user.id)
+    {
+      findwathclist();
+    }
   };
 
-  
+  const addtoWatchlist=async(AnimeId,UserId)=>{
+    const data=await axios.post(ApiBase+"/Watchlists/add",{AnimeId,UserId});
+    if(data)
+    {
+        if(data.data.err)
+        {
+            message.error(data.data.err)
+        }
+        else{
+            message.success(data.data.msg)
+            findwathclist();  
+        }
+        
+    }
+}
+const removefromWatchlist=async(AnimeId,UserId)=>{
+    const data=await axios.delete(ApiBase+"/Watchlists/delete/"+UserId+"/"+AnimeId);
+    if(data)
+    {
+        if(data.data.err)
+        {
+            message.error(data.data.err)
+        }
+        else{
+            message.success(data.data.msg)
+            findwathclist();
+            
+        }
+    }
+}
   useEffect(() => {
     setShowDiv(true);
     setSeconds(6);
@@ -373,7 +417,7 @@ const WatchAnime = () => {
                 />
               </Col>
               <Col span={19} style={{ textAlign: "left" }}>
-                <h1>{Anime.title}</h1>
+                <h1>{Anime.title+" "}{user.id?(watchstatus==0?<Button  title="Add to WatchList"  type="primary" onClick={()=>addtoWatchlist(id,user.id)} >Add To WatchList<PlusSquareOutlined /></Button>:<Button type="primary" title="Remove form WatchList" danger onClick={()=>removefromWatchlist(id,user.id)} >Remove From WatchList<CheckOutlined /></Button>):""} </h1>
                 <div>
                   <Tooltip title={Anime.Rate?.Description}>
                     <Tag color="geekblue">
