@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 13, 2024 at 07:45 AM
+-- Generation Time: Feb 13, 2024 at 11:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -424,6 +424,30 @@ INSERT INTO `Users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`,
 (2, 'prince-vegeta', 'vegeta@gmail.com', '$2b$10$FzwPpoxwMQeTp5YxKl.Vqe5/B8GGpz1nOo3rbYqrJrGvtcjzMMrwm', 0, '2024-02-08 07:21:01', '2024-02-12 07:20:50', 3),
 (3, 'kakshi hatake', 'kakashi@g.com', '$2b$10$b5NnOVzWTzz1JbxMrA0Tj.2k4ntXYQL1UhzRXh2OSm98m5hniD/ES', 0, '2024-02-13 05:18:45', '2024-02-13 05:28:47', 26);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Watchlists`
+--
+
+CREATE TABLE `Watchlists` (
+  `id` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `AnimeId` int(11) DEFAULT NULL,
+  `UserId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Watchlists`
+--
+
+INSERT INTO `Watchlists` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `UserId`) VALUES
+(9, '2024-02-13 10:47:32', '2024-02-13 10:47:32', 6, 2),
+(10, '2024-02-13 10:47:39', '2024-02-13 10:47:39', 8, 2),
+(11, '2024-02-13 10:48:38', '2024-02-13 10:48:38', 8, 3),
+(12, '2024-02-13 10:48:43', '2024-02-13 10:48:43', 3, 3);
+
 --
 -- Indexes for dumped tables
 --
@@ -527,6 +551,14 @@ ALTER TABLE `Users`
   ADD KEY `UserpicId` (`UserpicId`);
 
 --
+-- Indexes for table `Watchlists`
+--
+ALTER TABLE `Watchlists`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `AnimeId` (`AnimeId`),
+  ADD KEY `UserId` (`UserId`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -603,6 +635,12 @@ ALTER TABLE `Users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `Watchlists`
+--
+ALTER TABLE `Watchlists`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -646,6 +684,13 @@ ALTER TABLE `StudioAnimes`
 --
 ALTER TABLE `Users`
   ADD CONSTRAINT `Users_ibfk_1` FOREIGN KEY (`UserpicId`) REFERENCES `Userpics` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Watchlists`
+--
+ALTER TABLE `Watchlists`
+  ADD CONSTRAINT `Watchlists_ibfk_1` FOREIGN KEY (`AnimeId`) REFERENCES `Animes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Watchlists_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
