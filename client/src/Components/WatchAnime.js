@@ -380,6 +380,7 @@ const removefromWatchlist=async(AnimeId,UserId)=>{
                       margin: "30px ",
                     }}
                   >
+                   <h1 align="center"> {Add.title.toUpperCase()}</h1>
                     {Add.Description}
                
                   </div>
@@ -417,7 +418,7 @@ const removefromWatchlist=async(AnimeId,UserId)=>{
                 />
               </Col>
               <Col span={19} style={{ textAlign: "left" }}>
-                <h1>{Anime.title+" "}{user.id?(watchstatus==0?<Button  title="Add to WatchList"  type="primary" onClick={()=>addtoWatchlist(id,user.id)} >Add To WatchList<PlusSquareOutlined /></Button>:<Button type="primary" title="Remove form WatchList" danger onClick={()=>removefromWatchlist(id,user.id)} >Remove From WatchList<CheckOutlined /></Button>):""} </h1>
+                <h1>{Anime.title+" "}{user.id?(watchstatus==0?<Button  title="Add to WatchList"  type="primary" onClick={()=>addtoWatchlist(id,user.id)} >Add To WatchList<PlusSquareOutlined /></Button>:<Button type="primary" title="Remove form WatchList" danger="true" onClick={()=>removefromWatchlist(id,user.id)} >Remove From WatchList<CheckOutlined /></Button>):""} </h1>
                 <div>
                   <Tooltip title={Anime.Rate?.Description}>
                     <Tag color="geekblue">
