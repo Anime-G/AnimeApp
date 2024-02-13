@@ -12,7 +12,7 @@ const Search = () => {
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = currentPage * pageSize;
   const [cards, setCards] = useState([]);
-  const limit = 25;
+  const limit = 1000025;
 
   function searchArray(arrayOfObjects, searchString) {
     // Convert the search string to lowercase

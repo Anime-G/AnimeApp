@@ -380,7 +380,7 @@ const removefromWatchlist=async(AnimeId,UserId)=>{
                       margin: "30px ",
                     }}
                   >
-                   <h1 align="center"> {Add.title.toUpperCase()}</h1>
+                   <h1 align="center"> {(Add?.title)?.toUpperCase()}</h1>
                     {Add.Description}
                
                   </div>
@@ -389,6 +389,7 @@ const removefromWatchlist=async(AnimeId,UserId)=>{
                 <>
                   <video controlsList="nodownload" controls poster={Anime.pic} style={{width:"100%",background:"url("+Anime.pic+") ",backdropFilter:"greyscale(100%)"}} >
                     <source src={Episodedata.url} type="audio/mp3" />
+                    <source src={Episodedata.url} type="audio/ogg" />
                   </video>
                 </>
               ))
