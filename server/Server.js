@@ -30,6 +30,6 @@ app.use('/Count',Count)
 app.use('/Episodes',Episode)
 db.sequelize.sync().then(()=>{
     app.listen(port,()=>{
-        console.log("Port: ",port);
+        //console.log("Port: ",port);
     })
 });

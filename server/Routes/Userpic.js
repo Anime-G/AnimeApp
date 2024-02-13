@@ -14,7 +14,7 @@ router.get('/find/:id',async(req,res)=>{
 
 router.post("/add", async (req, res) => {
   const { name,pic } = req.body;
-  console.log({ name,pic });
+  //console.log({ name,pic });
   const count = await Userpic.count({where:{ name }});
   if (count===0) {
     const result = await Userpic.create({ name,pic });

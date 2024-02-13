@@ -18,7 +18,7 @@ router.get('/random',async(req,res)=>{
 })
 router.post("/add", async (req, res) => {
   const { title,pic,Description } = req.body;
-  console.log({ title,pic,Description });
+  //console.log({ title,pic,Description });
   const count = await Adds.count({where:{ title }});
   if (count===0) {
     const result = await Adds.create({ title,pic,Description });

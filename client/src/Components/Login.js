@@ -140,7 +140,7 @@ const [formdata]=Form.useForm();
         const {id,name,emailid,Userpicurl,status,token}=result.data;
         message.success(result.data.msg);
         localStorage.setItem("accessToken",token);
-        console.log({id,name,emailid,Userpicurl,status});
+        //console.log({id,name,emailid,Userpicurl,status});
         setUser({id,name,emailid,Userpicurl,status})
         formdata.resetFields();
         if(status==1)

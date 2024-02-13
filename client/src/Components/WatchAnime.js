@@ -54,7 +54,7 @@ const WatchAnime = () => {
     let id = Params.id;
     let Epi = Params.Epi;
     setEpisodeData({});
-    console.log(Epi);
+    //console.log(Epi);
     if (Epi) {
       axios.get(ApiBase + "/Episodes/find/" + Epi).then((data) => {
         setEpi(data.data.id);
@@ -67,7 +67,7 @@ const WatchAnime = () => {
           setEpi(data.data.id);
           setEpisodeData(data.data);
         }
-        // console.log("Finding Data: ",data);
+        // //console.log("Finding Data: ",data);
       });
     }
   };
@@ -247,7 +247,7 @@ const WatchAnime = () => {
   };
 
   return (
-    <div>
+    <div style={{userSelect:"none"}}>
       <Row style={{ width: "100%" }}>
         {/* Episode  */}
         <Col style={{ width: "20%" }}>
@@ -342,7 +342,7 @@ const WatchAnime = () => {
                 </>
               ) : (
                 <>
-                  <video controls poster={Anime.pic} style={{width:"100%",background:"url("+Anime.pic+") ",backdropFilter:"greyscale(100%)"}} >
+                  <video controlsList="nodownload" controls poster={Anime.pic} style={{width:"100%",background:"url("+Anime.pic+") ",backdropFilter:"greyscale(100%)"}} >
                     <source src={Episodedata.url} type="audio/mp3" />
                   </video>
                 </>

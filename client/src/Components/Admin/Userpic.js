@@ -74,13 +74,13 @@ const Userpic = () => {
     });
   };
   const onFinish = async (values) => {
-    console.log(values);
+    //console.log(values);
     let { name, pic } = values;
 
     pic = trimString(pic);
     name = trimString(name).toLowerCase();
     values = { name, pic };
-    console.log(values);
+    //console.log(values);
     const result = await axios.post(ApiBase + "/Userpic/add", values);
     if (result) {
       if (result.data.msg) {
@@ -93,12 +93,12 @@ const Userpic = () => {
     // Here you can handle form submission logic, such as sending data to a server
   };
   const onFinishup = async (values) => {
-    console.log(values);
+    //console.log(values);
     let { id,name, pic } = values;
     pic = trimString(pic);
     name = trimString(name).toLowerCase();
     values = { id,name, pic };
-    console.log("values",values);
+    //console.log("values",values);
     setImageUrl(pic);
     
     const result = await axios.patch(ApiBase + "/Userpic/update", values);
@@ -215,9 +215,9 @@ const Userpic = () => {
   );
   const finddata = (id) => {
     const result = data.filter((item) => item.id === id);
-    // console.log(result);
+    // //console.log(result);
     const { name, pic } = result[0];
-    // console.log({ name, pic });
+    // //console.log({ name, pic });
     setImageUrl(pic);
     upform.setFieldsValue({ id, name,pic});
     

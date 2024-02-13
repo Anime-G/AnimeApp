@@ -73,13 +73,13 @@ const Profile = () => {
 
   // Form submit handler
   const onFinish = async (values) => {
-    console.log("Received values:", values);
+    //console.log("Received values:", values);
     let { name, emailid, id } = values;
     name = trimString(name).toLowerCase();
     emailid = trimString(emailid);
 
     values = { name, emailid, id };
-    console.log(values);
+    //console.log(values);
     const result = await axios.patch(ApiBase + "/Users/update", values);
     if (result) {
       if (result.data.msg) {
@@ -93,7 +93,7 @@ const Profile = () => {
     }
   };
   const onFinish2 = async (values) => {
-    console.log("Password values:", values);
+    //console.log("Password values:", values);
     let { Password, npassword, confpassword } = values;
 
     if (npassword !== confpassword) {

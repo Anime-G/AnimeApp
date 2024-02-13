@@ -38,7 +38,7 @@ const AddAnime = () => {
   const [pic, setImageUrl] = useState("");
   const [form] =Form.useForm();
   const onFinish = async(values) => {
-    console.log("Success:", values);
+    //console.log("Success:", values);
     let {AuthorId,StudioId,GenereId,RateId,TypeId,status,name,pic,description}=values;
     name=trimString(name).toLowerCase();
     pic=trimString(pic);
@@ -60,31 +60,31 @@ const AddAnime = () => {
   const getrate = async () => {
     const data = await axios.get(ApiBase + "/Rates/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(RateFetch(d));
   };
   const getGenere = async () => {
     const data = await axios.get(ApiBase + "/Generes/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(GenereFetch(d));
   };
   const getStudio = async () => {
     const data = await axios.get(ApiBase + "/Studios/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(StudioFetch(d));
   };
   const getAuthor = async () => {
     const data = await axios.get(ApiBase + "/Authors/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(Authfetch(d));
   };
   const gettype = async () => {
     const data = await axios.get(ApiBase + "/Types/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(Typefetch(d));
   };
   const fetchdata = () => {

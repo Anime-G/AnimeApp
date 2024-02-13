@@ -38,7 +38,7 @@ const Nav = () => {
   };
   
   
-  // console.log(user);
+  // //console.log(user);
   const items = [];
   if (!user.id) {
     items.push(

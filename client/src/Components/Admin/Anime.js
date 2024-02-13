@@ -62,25 +62,25 @@ const Anime = () => {
   const getrate = async () => {
     const data = await axios.get(ApiBase + "/Rates/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(RateFetch(d));
   };
   const getGenere = async () => {
     const data = await axios.get(ApiBase + "/Generes/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(GenereFetch(d));
   };
   const getStudio = async () => {
     const data = await axios.get(ApiBase + "/Studios/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(StudioFetch(d));
   };
   const getAuthor = async () => {
     const data = await axios.get(ApiBase + "/Authors/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(Authfetch(d));
   };
   const options = [
@@ -98,7 +98,7 @@ const Anime = () => {
   const gettype = async () => {
     const data = await axios.get(ApiBase + "/Types/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(Typefetch(d));
   };
   const fetchdata = () => {
@@ -116,14 +116,14 @@ const Anime = () => {
     setVisibleup(false);
   };
   const onFinishup = async (values) => {
-    console.log("Received values:", values);
+    // //console.log("Received values:", values);
     let {id,AuthorId,StudioId,GenereId,RateId,TypeId,status,name,pic,description}=values;
     name=trimString(name).toLowerCase();
     pic=trimString(pic);
     description=trimString(description);
     values={id,AuthorId,GenereId,StudioId,RateId,TypeId,status,name,pic,description};
 
-    console.log(values);
+    // //console.log(values);
     const result = await axios.patch(ApiBase + "/Animes/update", values);
     if (result) {
       if (result.data.msg) {
@@ -444,11 +444,11 @@ const Anime = () => {
   const finddata = async (id) => {
     const data = await axios.get(ApiBase + "/Animes/find/" + id);
 
-    console.log(data.data);
+    // //console.log(data.data);
 
     const { title, description,status, pic,Rate,Type, Authors,Studios,Generes } = data.data;
-    // console.log({title,Description,pic});
-    console.log();
+    // //console.log({title,Description,pic});
+    //console.log();
     upform.setFieldsValue({
       id,
       name: title,
@@ -466,7 +466,7 @@ const Anime = () => {
     
   };
   const renderCards = () => {
-    return Animes.slice(startIndex, endIndex).map((item, index) => {
+    return Animes?.slice(startIndex, endIndex).map((item, index) => {
       const Details = (
         <div
           style={{
@@ -666,12 +666,12 @@ const Anime = () => {
   ];
   const getAnime = async () => {
     const data = await axios.get(ApiBase + "/Animes/");
-    console.log(data.data);
+    
     dispatch(fetch(data.data));
   };
 
   const deleteAnime = async (id) => {
-    console.log(id);
+    
     const result = await axios.delete(ApiBase + "/Animes/delete/" + id);
     if (result) {
       if (result.data.msg) {

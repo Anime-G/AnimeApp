@@ -12,10 +12,10 @@ const Home = () => {
 
   const getAnimedetails = async () => {
     const data = await axios.get(ApiBase + "/Animes/top/" + limit);
-    console.log(data.data);
+    //console.log(data.data);
     setcorousal(data.data);
     const data2 = await axios.post(ApiBase + "/Animes/Animescards",{id:_.map(data.data,function(item){return item.id})});
-    console.log(data2.data);
+    //console.log(data2.data);
     setCards(data2.data);
   };
   
@@ -316,6 +316,7 @@ const Home = () => {
               pageSize={pageSize}
               onChange={handlePageChange}
               showSizeChanger={false}
+              
             />
           </div>
           <div

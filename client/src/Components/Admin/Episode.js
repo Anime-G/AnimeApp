@@ -56,7 +56,7 @@ const Episode = () => {
     const data = await axios.get(ApiBase + "/Animes/");
 
     dispatch(Animefetch(data.data));
-    console.log(data.data);
+    //console.log(data.data);
   };
 
   // Function to handle showing and hiding the modal
@@ -85,18 +85,18 @@ const Episode = () => {
   };
   const getAnimeEp = async () => {
     const data = await axios.get(ApiBase + "/Animes/getAnimeWithEps");
-    // console.log(data.data);
+    // //console.log(data.data);
     setanimes(data.data);
   };
   // Form submit handler
   const onFinish = async (values) => {
-    console.log("Received values:", values);
+    //console.log("Received values:", values);
     let { AnimeId, title, Epno, url } = values;
 
     url = trimString(url);
     title = trimString(title).toLowerCase();
     values = { AnimeId, title, Epno, url };
-    console.log(values);
+    //console.log(values);
     const result = await axios.post(ApiBase + "/Episodes/add", values);
     if (result) {
       if (result.data.msg) {
@@ -115,13 +115,13 @@ const Episode = () => {
   };
   // Form submit handler
   const onFinishup = async (values) => {
-    console.log("Received values:", values);
+    //console.log("Received values:", values);
     let { id, title, Epno, url, AnimeId } = values;
 
     url = trimString(url);
     title = trimString(title).toLowerCase();
     values = { id, Epno, title, url, AnimeId };
-    console.log(values);
+    //console.log(values);
     const result = await axios.patch(ApiBase + "/Episodes/update", values);
     if (result) {
       if (result.data.msg) {
@@ -365,11 +365,11 @@ const Episode = () => {
   );
   const finddata = (id) => {
     const result = data.filter((item) => item.id === id);
-    // console.log(result);
+    // //console.log(result);
     const { title, Epno, url, AnimeId } = result[0];
     let anime = animes.filter((a) => a.id == AnimeId);
 
-    // console.log({  title, Epno,url,AnimeId:anime[0].id });
+    // //console.log({  title, Epno,url,AnimeId:anime[0].id });
     setImageUrlup(url);
     updateform.setFieldsValue({ id, title, Epno, url, AnimeId: anime[0].id });
     showModalup();

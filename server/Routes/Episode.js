@@ -25,7 +25,7 @@ router.get("/findbyAnimeId/:id", async (req, res) => {
 });
 router.post("/add", async (req, res) => {
   const { title, url, AnimeId, Epno } = req.body;
-  console.log({ title, url, AnimeId, Epno });
+  //console.log({ title, url, AnimeId, Epno });
   const count = await Episode.count({ where: { Epno, AnimeId } });
   if (count === 0) {
     const result = await Episode.create({ title, url, AnimeId, Epno });

@@ -58,7 +58,7 @@ const Studio = () => {
   const fetchdata = async () => {
     const data = await axios.get(ApiBase + "/Studios/");
     const d = data.data;
-    // console.log(d);
+    // //console.log(d);
     dispatch(fetch(d));
     // setauth(Studios);
   };

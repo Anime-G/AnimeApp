@@ -85,7 +85,7 @@ router.post("/login", async (req, res) => {
       if(UserpicId!==null)
       {
         const data=await Userpic.findOne({where:{id:UserpicId}});
-        console.log({pic:data.pic});
+        //console.log({pic:data.pic});
         Userpicurl={pic:data.pic};
       }
       const token = sign({ id, name,Userpicurl, emailid, status }, "UltraEgo");

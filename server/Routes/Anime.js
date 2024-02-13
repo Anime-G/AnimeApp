@@ -90,7 +90,7 @@ router.get("/", async (req, res) => {
       Authors,
       Studios,
     };
-    // console.log("Data ", TotalObject);
+    // //console.log("Data ", TotalObject);
     TotalData.push(TotalObject);
   }
   res.json(TotalData);
@@ -111,7 +111,7 @@ router.post("/add", async (req, res) => {
     description,
   } = req.body;
   const count = await Anime.count({ where: { title: name } });
-  console.log(StudioId);
+  //console.log(StudioId);
   if (count === 0) {
     //insert the Data
     const result = await Anime.create({
@@ -219,7 +219,7 @@ router.delete("/delete/:id", async (req, res) => {
 });
 router.get("/top/:limit",async(req,res)=>{
   const limit=req.params.limit;
-  console.log(limit);
+  //console.log(limit);
   const result = await Anime.findAll({
     
     attributes: { exclude: ["RateId", "TypeId"] },
@@ -239,7 +239,7 @@ router.get("/top/:limit",async(req,res)=>{
 })
 router.post("/Animescards",async(req,res)=>{
   const id=req.body.id;
-  console.log(id);
+  //console.log(id);
   const result = await Anime.findAll({
     where:{id:{[Op.notIn]:id}},
     attributes: { exclude: ["RateId", "TypeId"] },
@@ -271,7 +271,7 @@ router.get("/getAnimeWithEps",async(req,res)=>{
 router.get("/GetDataAnime/:id",async(req,res)=>{
   
   const id=req.params.id;
-  console.log(id);
+  //console.log(id);
   const result = await Anime.findAll({
     where:{id},
     attributes: { exclude: ["RateId", "TypeId"] },

@@ -53,13 +53,13 @@ const Ads = () => {
 
   // Form submit handler
   const onFinish = async (values) => {
-    console.log("Received values:", values);
+    //console.log("Received values:", values);
     let { Description, title, pic } = values;
     Description = trimString(Description);
     pic = trimString(pic);
     title = trimString(title).toLowerCase();
     values = { Description, title, pic };
-    console.log(values);
+    //console.log(values);
     const result = await axios.post(ApiBase + "/Ads/add", values);
     if (result) {
         if (result.data.msg) {
@@ -78,13 +78,13 @@ const Ads = () => {
   };
   // Form submit handler
   const onFinishup = async (values) => {
-    console.log("Received values:", values);
+    //console.log("Received values:", values);
     let { id, Description, title, pic } = values;
     Description = trimString(Description);
     pic = trimString(pic);
     title = trimString(title).toLowerCase();
     values = { id,Description, title, pic };
-    console.log(values);
+    //console.log(values);
     const result = await axios.patch(ApiBase + "/Ads/update", values);
     if (result) {
       if (result.data.msg) {
@@ -212,9 +212,9 @@ const Ads = () => {
   );
   const finddata = (id) => {
     const result = data.filter((item) => item.id === id);
-    console.log(result);
+    //console.log(result);
     const {title,Description,pic}=result[0];
-    console.log({title,Description,pic});
+    //console.log({title,Description,pic});
     updateform.setFieldsValue({id,title,Description,pic});
     showModalup();
   };
