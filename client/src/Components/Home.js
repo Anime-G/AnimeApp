@@ -98,6 +98,7 @@ const Home = () => {
             width: 200,
             height: "300px",
             position: "relative",
+            borderRadius:"10px",
           }}
           cover={
             <Tooltip

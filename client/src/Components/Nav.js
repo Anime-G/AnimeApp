@@ -9,6 +9,7 @@ import {
   LoginOutlined,
   LogoutOutlined,
   ProfileOutlined,
+  SearchOutlined,
   UserOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
@@ -27,6 +28,7 @@ import {default as Chome}  from './Home';
 import axios from "axios";
 import { ApiBase } from "../Const";
 import WatchAnime from "./WatchAnime";
+import Search from "./Search";
 const Nav = () => {
   const { user, setUser,userpic} = useContext(AuthContext);
   const [data,setData]=useState([]);
@@ -121,7 +123,13 @@ const Nav = () => {
           label: <Link to="/">Home</Link>,
           key: "Home",
           icon: <HomeOutlined />,
-        })
+        },
+        {
+          label: <Link to="/search">search</Link>,
+          key: "search",
+          icon: <SearchOutlined />,
+        }
+        )
     }
 
    
@@ -146,6 +154,7 @@ const Nav = () => {
       <Routes>
         <Route path='/' element={<Chome/>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/Anime/:id" element={<WatchAnime />} />
         <Route path="/Anime/:id/:Epi" element={<WatchAnime />} />
         {user.id ? <Route path="/profile" element={<Profile />} /> : ""}

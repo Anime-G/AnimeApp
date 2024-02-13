@@ -88,3 +88,12 @@ code {
   height: 100%;
   
 } 
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Set minimum height of the viewport */
+}
+
+.content {
+  flex: 1; /* Fill remaining vertical space */
+}

@@ -52,8 +52,11 @@ function App() {
   return (
     <AuthContext.Provider value={{user,setUser,userpic,setUserpic}} >
     <div className="App">
+      <div className="content">
+
       <Nav/>
-      <Footer/>
+      </div>
+      <Footer className="footer" />
     </div>
     </AuthContext.Provider>
   );

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 12, 2024 at 01:38 PM
+-- Generation Time: Feb 13, 2024 at 07:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,7 +70,7 @@ CREATE TABLE `Animes` (
   `EpisodeId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---  
+--
 -- Dumping data for table `Animes`
 --
 
@@ -395,7 +395,8 @@ INSERT INTO `Userpics` (`id`, `name`, `pic`, `createdAt`, `updatedAt`) VALUES
 (21, 'sasuke', 'https://i.pinimg.com/564x/b1/e9/9e/b1e99ec094df93091b34389aa67db8ec.jpg', '2024-02-06 09:33:26', '2024-02-06 09:33:26'),
 (22, 'toshiro', 'https://i.pinimg.com/564x/17/49/4c/17494c6ce0b61d76c2aea6abf73334bb.jpg', '2024-02-06 09:42:29', '2024-02-06 09:42:29'),
 (23, 'ichigo', 'https://i.pinimg.com/564x/ab/5f/c8/ab5fc8e5c6f5a305c81f16a7b465c302.jpg', '2024-02-06 09:42:49', '2024-02-06 09:42:49'),
-(24, 'toji fushiguro', 'https://i.pinimg.com/564x/18/d6/35/18d635c39ce7f4cf184c437c6598eafb.jpg', '2024-02-08 07:18:37', '2024-02-08 07:18:58');
+(24, 'toji fushiguro', 'https://i.pinimg.com/564x/18/d6/35/18d635c39ce7f4cf184c437c6598eafb.jpg', '2024-02-08 07:18:37', '2024-02-08 07:18:58'),
+(26, 'kakashi', 'https://i.pinimg.com/564x/84/d5/78/84d578200066c70b59e625ede808ddea.jpg', '2024-02-13 05:24:30', '2024-02-13 05:24:30');
 
 -- --------------------------------------------------------
 
@@ -420,7 +421,8 @@ CREATE TABLE `Users` (
 
 INSERT INTO `Users` (`id`, `name`, `emailid`, `password`, `status`, `createdAt`, `updatedAt`, `UserpicId`) VALUES
 (1, 'son-goku', 'goku@san.com', '$2b$10$GRiTsOVZHDdeSPQvnKhwXOg9XTS2vomavX8NwDQGJUjbhUeGXjoFO', 1, '2024-02-08 07:19:35', '2024-02-12 04:33:15', 7),
-(2, 'prince-vegeta', 'vegeta@gmail.com', '$2b$10$FzwPpoxwMQeTp5YxKl.Vqe5/B8GGpz1nOo3rbYqrJrGvtcjzMMrwm', 0, '2024-02-08 07:21:01', '2024-02-12 07:20:50', 3);
+(2, 'prince-vegeta', 'vegeta@gmail.com', '$2b$10$FzwPpoxwMQeTp5YxKl.Vqe5/B8GGpz1nOo3rbYqrJrGvtcjzMMrwm', 0, '2024-02-08 07:21:01', '2024-02-12 07:20:50', 3),
+(3, 'kakshi hatake', 'kakashi@g.com', '$2b$10$b5NnOVzWTzz1JbxMrA0Tj.2k4ntXYQL1UhzRXh2OSm98m5hniD/ES', 0, '2024-02-13 05:18:45', '2024-02-13 05:28:47', 26);
 
 --
 -- Indexes for dumped tables
@@ -592,13 +594,13 @@ ALTER TABLE `Types`
 -- AUTO_INCREMENT for table `Userpics`
 --
 ALTER TABLE `Userpics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
