@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 13, 2024 at 11:51 AM
+-- Generation Time: Feb 13, 2024 at 12:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -82,7 +82,8 @@ INSERT INTO `Animes` (`id`, `title`, `description`, `pic`, `status`, `createdAt`
 (7, 'bleach', '\"Bleach\" is a Japanese manga and anime series created by Tite Kubo. It follows the story of Ichigo Kurosaki, a teenager with the ability to see ghosts. After inadvertently obtaining the powers of a Soul Reaper—a spiritual being tasked with guiding souls to the afterlife—Ichigo finds himself thrust into the world of the Soul Society, where he must battle evil spirits known as Hollows and protect both the living and the dead. Alongside his friends, including the fiery-tempered Soul Reaper Rukia Kuchiki and the quirky spirit medium Orihime Inoue, Ichigo faces increasingly powerful foes and uncovers dark conspiracies that threaten the balance between the human world and the afterlife. With its blend of action-packed battles, supernatural elements, and intricate world-building, \"Bleach\" has garnered a dedicated fanbase worldwide.', 'https://i.pinimg.com/564x/73/3d/1b/733d1bdb2a589da8563016253232b586.jpg', 1, '2024-02-06 17:45:26', '2024-02-06 17:45:26', 3, 1, NULL),
 (8, 'bleach: thousand-year blood war', '\"Bleach: Thousand-Year Blood War\" is an arc within the \"Bleach\" manga series, created by Tite Kubo. This arc follows the climactic battle between the Soul Society and the Wandenreich, a powerful organization of Quincy led by Yhwach. As Yhwach and his forces launch a full-scale invasion of the Soul Society, Ichigo Kurosaki and his allies must rally together to defend their world against this formidable threat. The arc delves into the history of the Quincy, Ichigo\'s own lineage, and the true nature of the Soul King, culminating in epic battles and shocking revelations that reshape the fate of the Bleach universe. With its intense action, complex characters, and high-stakes storytelling, the Thousand-Year Blood War arc is a thrilling conclusion to the Bleach manga series.', 'https://i.pinimg.com/564x/c4/d8/56/c4d85662d571d18c31437e2fe0b2c9ea.jpg', 1, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 3, 1, NULL),
 (9, 'god of high school', '\"God of High School\" is a South Korean webtoon series created by Yongje Park, which has also been adapted into a popular anime. The story centers around Jin Mori, a high school student and skilled martial artist who enters the God of High School tournament, a competition where participants from all over the country battle it out using their martial arts skills. As the tournament progresses, Jin Mori encounters formidable opponents, forges new friendships, and uncovers the mysteries surrounding the tournament\'s true purpose. Alongside his friends, including the swordswoman Yu Mira and the hand-to-hand fighter Han Daewi, Jin Mori faces increasingly powerful adversaries and confronts his own past. With its dynamic fight scenes, supernatural elements, and themes of friendship and self-discovery, \"God of High School\" has captivated audiences with its fast-paced action and compelling characters.m', 'https://i.pinimg.com/564x/dc/a5/94/dca59487be9687615d1a3e0fd78105b6.jpg', 1, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 3, 1, NULL),
-(12, 'solo leveling', '\"Solo Leveling\" is a South Korean web novel series written by Chu-Gong. It follows the story of Sung Jin-Woo, an E-rank hunter in a world where gates to dungeons full of monsters have emerged, endangering humanity. After a near-death experience, Jin-Woo gains the ability to see quests, level up, and grow stronger. He embarks on a journey to become the most powerful hunter, known as a \"solo leveler.\" The series is known for its intense action, intricate plot, and dynamic character development. It has gained significant popularity both in South Korea and internationally, with a webtoon adaptation and a dedicated fanbase.', 'https://i.pinimg.com/564x/0f/22/0f/0f220f8cd8c8613fafbdf6ee7582c835.jpg', 0, '2024-02-08 05:01:26', '2024-02-08 06:54:13', 3, 1, NULL);
+(12, 'solo leveling', '\"Solo Leveling\" is a South Korean web novel series written by Chu-Gong. It follows the story of Sung Jin-Woo, an E-rank hunter in a world where gates to dungeons full of monsters have emerged, endangering humanity. After a near-death experience, Jin-Woo gains the ability to see quests, level up, and grow stronger. He embarks on a journey to become the most powerful hunter, known as a \"solo leveler.\" The series is known for its intense action, intricate plot, and dynamic character development. It has gained significant popularity both in South Korea and internationally, with a webtoon adaptation and a dedicated fanbase.', 'https://i.pinimg.com/564x/0f/22/0f/0f220f8cd8c8613fafbdf6ee7582c835.jpg', 0, '2024-02-08 05:01:26', '2024-02-08 06:54:13', 3, 1, NULL),
+(13, 'jujutsu kaisen', '\"Jujutsu Kaisen\" is a compelling Japanese manga series by Gege Akutami, serialized in \"Weekly Shōnen Jump\" magazine. It follows Yuji Itadori, a high school student drawn into the world of curses and jujutsu sorcery after encountering a dangerous cursed object. Joining the Tokyo Metropolitan Curse Technical College, Yuji learns to control cursed energy alongside allies like Megumi Fushiguro and Gojo Satoru, confronting powerful curses while navigating the complexities of the jujutsu realm. Praised for its dynamic characters, intricate world-building, and intense battles, \"Jujutsu Kaisen\" explores themes of friendship, sacrifice, and the consequences of wielding supernatural powers, earning widespread acclaim and a successful anime adaptation.', 'https://i.pinimg.com/564x/ce/cd/ab/cecdab83069d27ccd3d8c3183a94026e.jpg', 0, '2024-02-13 11:05:51', '2024-02-13 11:05:51', 3, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -109,7 +110,8 @@ INSERT INTO `AuthorAnimes` (`createdAt`, `updatedAt`, `AnimeId`, `AuthorId`) VAL
 ('2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 8),
 ('2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 38),
 ('2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 39),
-('2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 6);
+('2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 6),
+('2024-02-13 11:05:51', '2024-02-13 11:05:51', 13, 40);
 
 -- --------------------------------------------------------
 
@@ -136,7 +138,8 @@ INSERT INTO `Authors` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (36, 'eiichiro oda', '2024-02-06 11:41:48', '2024-02-06 11:41:48'),
 (37, 'yuzuru tachikawa', '2024-02-06 11:47:22', '2024-02-06 11:47:22'),
 (38, 'yongje park', '2024-02-06 17:51:15', '2024-02-06 17:51:15'),
-(39, 'chu-gong', '2024-02-08 06:46:00', '2024-02-08 06:46:00');
+(39, 'chu-gong', '2024-02-08 06:46:00', '2024-02-08 06:46:00'),
+(40, 'gege akutami', '2024-02-13 11:05:00', '2024-02-13 11:05:00');
 
 -- --------------------------------------------------------
 
@@ -252,7 +255,11 @@ INSERT INTO `GeneresAnimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `GenereI
 (79, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 10),
 (80, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 4),
 (81, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 8),
-(82, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 11);
+(82, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 11),
+(83, '2024-02-13 11:05:51', '2024-02-13 11:05:51', 13, 1),
+(84, '2024-02-13 11:05:51', '2024-02-13 11:05:51', 13, 11),
+(85, '2024-02-13 11:05:51', '2024-02-13 11:05:51', 13, 5),
+(86, '2024-02-13 11:05:51', '2024-02-13 11:05:51', 13, 4);
 
 -- --------------------------------------------------------
 
@@ -305,7 +312,8 @@ INSERT INTO `StudioAnimes` (`id`, `createdAt`, `updatedAt`, `AnimeId`, `StudioId
 (8, '2024-02-06 17:48:38', '2024-02-06 17:48:38', 8, 7),
 (9, '2024-02-06 17:52:11', '2024-02-06 17:52:11', 9, 6),
 (16, '2024-02-08 06:54:13', '2024-02-08 06:54:13', 12, 12),
-(19, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 2);
+(19, '2024-02-08 07:25:14', '2024-02-08 07:25:14', 4, 2),
+(20, '2024-02-13 11:05:51', '2024-02-13 11:05:51', 13, 6);
 
 -- --------------------------------------------------------
 
@@ -572,13 +580,13 @@ ALTER TABLE `Adds`
 -- AUTO_INCREMENT for table `Animes`
 --
 ALTER TABLE `Animes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `Authors`
 --
 ALTER TABLE `Authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `Episodes`
@@ -596,7 +604,7 @@ ALTER TABLE `Generes`
 -- AUTO_INCREMENT for table `GeneresAnimes`
 --
 ALTER TABLE `GeneresAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `Rates`
@@ -608,7 +616,7 @@ ALTER TABLE `Rates`
 -- AUTO_INCREMENT for table `StudioAnimes`
 --
 ALTER TABLE `StudioAnimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `Studios`
@@ -638,7 +646,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Watchlists`
 --
 ALTER TABLE `Watchlists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
